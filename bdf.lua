@@ -125,9 +125,11 @@ Failed to find a backdoor!
 		script.Disabled = true
 		script.Parent.Parent:Destroy()
 		return
+	else
+		print("Found vulnerability: game."..script.Parent.Parent.re.Value:GetFullName())
 	end
 
-	wait(0.2)
+	wait(0.1)
 
 	txt.Text = [[Initialized!
 Found all RemoteEvents!
