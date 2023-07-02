@@ -1,8 +1,24 @@
+function sandbox(var,func)
+	local env = getfenv(func)
+	local newenv = setmetatable({},{
+		__index = function(self,k)
+			if k=="script" then
+				return var
+			else
+				return env[k]
+			end
+		end,
+	})
+	setfenv(func,newenv)
+	return func
+end
 cors = {}
 mas = Instance.new("Model",game:GetService("Lighting"))
 ScreenGui0 = Instance.new("ScreenGui")
 Frame1 = Instance.new("Frame")
+LocalScript2 = Instance.new("LocalScript")
 TextLabel3 = Instance.new("TextLabel")
+LocalScript4 = Instance.new("LocalScript")
 ObjectValue5 = Instance.new("ObjectValue")
 Frame6 = Instance.new("Frame")
 ScrollingFrame7 = Instance.new("ScrollingFrame")
@@ -12,10 +28,14 @@ TextButton10 = Instance.new("TextButton")
 TextButton11 = Instance.new("TextButton")
 TextBox12 = Instance.new("TextBox")
 TextLabel13 = Instance.new("TextLabel")
+LocalScript14 = Instance.new("LocalScript")
 TextButton15 = Instance.new("TextButton")
+LocalScript16 = Instance.new("LocalScript")
 TextButton17 = Instance.new("TextButton")
+LocalScript18 = Instance.new("LocalScript")
 TextButton19 = Instance.new("TextButton")
-ScreenGui0.Name = "zza"
+LocalScript20 = Instance.new("LocalScript")
+ScreenGui0.Name = "zzascr"
 ScreenGui0.Parent = mas
 ScreenGui0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Frame1.Name = "LoadingUI"
@@ -30,6 +50,7 @@ Frame1.BorderColor = BrickColor.new("Really black")
 Frame1.BorderColor3 = Color3.new(0, 0, 0)
 Frame1.BorderSizePixel = 0
 Frame1.ZIndex = 0
+LocalScript2.Parent = Frame1
 table.insert(cors,function()
 local txt = script.Parent.Status
 
@@ -139,7 +160,9 @@ TextLabel3.TextWrap = true
 TextLabel3.TextWrapped = true
 TextLabel3.TextXAlignment = Enum.TextXAlignment.Left
 TextLabel3.TextYAlignment = Enum.TextYAlignment.Top
-table.insert(cors,function()
+LocalScript4.Name = "drag"
+LocalScript4.Parent = Frame1
+table.insert(cors,sandbox(LocalScript4,function()
 --Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
 --Put this inside of your Frame and configure the speed if you would like.
 --Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
@@ -179,7 +202,7 @@ UIS.InputChanged:Connect(function(input)
 	end
 end)
 
-end)
+end))
 ObjectValue5.Name = "re"
 ObjectValue5.Parent = ScreenGui0
 Frame6.Name = "MainUI"
@@ -312,7 +335,9 @@ TextLabel13.TextScaled = true
 TextLabel13.TextSize = 14
 TextLabel13.TextWrap = true
 TextLabel13.TextWrapped = true
-table.insert(cors,function()
+LocalScript14.Name = "drag"
+LocalScript14.Parent = TextLabel13
+table.insert(cors,sandbox(LocalScript14,function()
 local UIS = game:GetService('UserInputService')
 local frame = script.Parent.Parent
 local dragToggle = nil
@@ -348,7 +373,7 @@ UIS.InputChanged:Connect(function(input)
 	end
 end)
 
-end)
+end))
 TextButton15.Name = "Run"
 TextButton15.Parent = Frame6
 TextButton15.Position = UDim2.new(0, 7, 0, 119)
@@ -367,7 +392,8 @@ TextButton15.TextScaled = true
 TextButton15.TextSize = 14
 TextButton15.TextWrap = true
 TextButton15.TextWrapped = true
-table.insert(cors,function()
+LocalScript16.Parent = TextButton15
+table.insert(cors,sandbox(LocalScript16,function()
 script.Parent.MouseButton1Down:Connect(function()
 	local code = script.Parent.Parent.code.Text
 	local re = script.Parent.Parent.Parent.re.Value
@@ -375,7 +401,7 @@ script.Parent.MouseButton1Down:Connect(function()
 	re:FireServer(code)
 	print("fired code")
 end)
-end)
+end))
 TextButton17.Name = "Clear"
 TextButton17.Parent = Frame6
 TextButton17.Position = UDim2.new(0, 87, 0, 119)
@@ -394,11 +420,12 @@ TextButton17.TextScaled = true
 TextButton17.TextSize = 14
 TextButton17.TextWrap = true
 TextButton17.TextWrapped = true
-table.insert(cors,function()
+LocalScript18.Parent = TextButton17
+table.insert(cors,sandbox(LocalScript18,function()
 script.Parent.MouseButton1Down:Connect(function()
 	script.Parent.Parent.code.Text = ""
 end)
-end)
+end))
 TextButton19.Name = "Exit"
 TextButton19.Parent = Frame6
 TextButton19.Position = UDim2.new(0, 166, 0, 119)
@@ -417,11 +444,12 @@ TextButton19.TextScaled = true
 TextButton19.TextSize = 14
 TextButton19.TextWrap = true
 TextButton19.TextWrapped = true
-table.insert(cors,function()
+LocalScript20.Parent = TextButton19
+table.insert(cors,sandbox(LocalScript20,function()
 script.Parent.MouseButton1Down:Connect(function()
 	script.Parent.Parent.Parent:Destroy()
 end)
-end)
+end))
 for i,v in pairs(mas:GetChildren()) do
 	v.Parent = game:GetService("Players").LocalPlayer.PlayerGui
 	pcall(function() v:MakeJoints() end)
