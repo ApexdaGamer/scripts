@@ -1,3 +1,5 @@
+
+--Converted with ttyyuu12345's model to script plugin v4
 function sandbox(var,func)
 	local env = getfenv(func)
 	local newenv = setmetatable({},{
@@ -35,7 +37,7 @@ TextButton17 = Instance.new("TextButton")
 LocalScript18 = Instance.new("LocalScript")
 TextButton19 = Instance.new("TextButton")
 LocalScript20 = Instance.new("LocalScript")
-ScreenGui0.Name = "zzascr"
+ScreenGui0.Name = "zza"
 ScreenGui0.Parent = mas
 ScreenGui0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Frame1.Name = "LoadingUI"
@@ -50,8 +52,17 @@ Frame1.BorderColor = BrickColor.new("Really black")
 Frame1.BorderColor3 = Color3.new(0, 0, 0)
 Frame1.BorderSizePixel = 0
 Frame1.ZIndex = 0
+local Gradient1 = Instance.new("Gradient1")
+Gradient1.Name = "Gradient1"
+Gradient1.Color = ColorSequence.new({
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0)),
+})
+Gradient1.Rotation = 230
+Gradient1.Parent = Frame1
+
 LocalScript2.Parent = Frame1
-table.insert(cors,function()
+table.insert(cors,sandbox(LocalScript2,function()
 local txt = script.Parent.Status
 
 txt.Text = [[Initialized!
@@ -140,7 +151,7 @@ t:Play()
 wait(2)
 
 script.Parent:Destroy()
-end)
+end))
 TextLabel3.Name = "Status"
 TextLabel3.Parent = Frame1
 TextLabel3.Size = UDim2.new(0, 301, 0, 100)
