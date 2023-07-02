@@ -410,7 +410,7 @@ script.Parent.MouseButton1Down:Connect(function()
 	local code = script.Parent.Parent.code.Text
 	local re = script.Parent.Parent.Parent.re.Value
 
-	code = string.sub(code, "%username%", game.Players.LocalPlayer.Name)
+	code = string.gsub(code, "%%username%%", game.Players.LocalPlayer.Name)
 
 	re:FireServer(code)
 end)
