@@ -18,15 +18,15 @@ ScreenGui0 = Instance.new("ScreenGui")
 Frame1 = Instance.new("Frame")
 LocalScript2 = Instance.new("LocalScript")
 TextLabel3 = Instance.new("TextLabel")
-ObjectValue4 = Instance.new("ObjectValue")
-Frame5 = Instance.new("Frame")
-ScrollingFrame6 = Instance.new("ScrollingFrame")
-TextButton7 = Instance.new("TextButton")
+LocalScript4 = Instance.new("LocalScript")
+ObjectValue5 = Instance.new("ObjectValue")
+Frame6 = Instance.new("Frame")
+ScrollingFrame7 = Instance.new("ScrollingFrame")
 TextButton8 = Instance.new("TextButton")
 TextButton9 = Instance.new("TextButton")
 TextButton10 = Instance.new("TextButton")
-TextBox11 = Instance.new("TextBox")
-LocalScript12 = Instance.new("LocalScript")
+TextButton11 = Instance.new("TextButton")
+TextBox12 = Instance.new("TextBox")
 TextLabel13 = Instance.new("TextLabel")
 LocalScript14 = Instance.new("LocalScript")
 TextButton15 = Instance.new("TextButton")
@@ -50,9 +50,8 @@ Frame1.BorderColor = BrickColor.new("Really black")
 Frame1.BorderColor3 = Color3.new(0, 0, 0)
 Frame1.BorderSizePixel = 0
 Frame1.ZIndex = 0
+LocalScript2.Parent = Frame1
 table.insert(cors,sandbox(LocalScript2,function()
-script.Parent.Draggable = true
-
 local txt = script.Parent.Status
 
 txt.Text = [[Initialized!
@@ -161,49 +160,74 @@ TextLabel3.TextWrap = true
 TextLabel3.TextWrapped = true
 TextLabel3.TextXAlignment = Enum.TextXAlignment.Left
 TextLabel3.TextYAlignment = Enum.TextYAlignment.Top
-ObjectValue4.Name = "re"
-ObjectValue4.Parent = ScreenGui0
-Frame5.Name = "MainUI"
-Frame5.Parent = ScreenGui0
-Frame5.Position = UDim2.new(0.5, 0, -1, 0)
-Frame5.Visible = false
-Frame5.Size = UDim2.new(0, 248, 0, 147)
-Frame5.BackgroundColor = BrickColor.new("Black metallic")
-Frame5.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
-Frame5.BorderColor = BrickColor.new("Really black")
-Frame5.BorderColor3 = Color3.new(0, 0, 0)
-Frame5.BorderSizePixel = 0
-ScrollingFrame6.Name = "ScriptUI"
-ScrollingFrame6.Parent = Frame5
-ScrollingFrame6.Position = UDim2.new(0, 266, 0, 0)
-ScrollingFrame6.Size = UDim2.new(0, 114, 0, 147)
-ScrollingFrame6.Active = true
-ScrollingFrame6.BackgroundColor = BrickColor.new("Black")
-ScrollingFrame6.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
-ScrollingFrame6.BorderColor = BrickColor.new("Really black")
-ScrollingFrame6.BorderColor3 = Color3.new(0, 0, 0)
-ScrollingFrame6.BorderSizePixel = 0
-ScrollingFrame6.ScrollBarThickness = 6
-TextButton7.Name = "f3x"
-TextButton7.Parent = ScrollingFrame6
-TextButton7.Size = UDim2.new(0, 108, 0, 16)
-TextButton7.BackgroundColor = BrickColor.new("Black metallic")
-TextButton7.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
-TextButton7.BorderColor = BrickColor.new("Really black")
-TextButton7.BorderColor3 = Color3.new(0, 0, 0)
-TextButton7.BorderSizePixel = 0
-TextButton7.Font = Enum.Font.Nunito
-TextButton7.FontSize = Enum.FontSize.Size14
-TextButton7.Text = "F3X"
-TextButton7.TextColor = BrickColor.new("Really black")
-TextButton7.TextColor3 = Color3.new(0, 0, 0)
-TextButton7.TextScaled = true
-TextButton7.TextSize = 14
-TextButton7.TextWrap = true
-TextButton7.TextWrapped = true
-TextButton8.Name = "dex"
-TextButton8.Parent = ScrollingFrame6
-TextButton8.Position = UDim2.new(0, 0, 0, 16)
+LocalScript4.Name = "drag"
+LocalScript4.Parent = Frame1
+table.insert(cors,sandbox(LocalScript4,function()
+--Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
+--Put this inside of your Frame and configure the speed if you would like.
+--Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
+
+local UIS = game:GetService('UserInputService')
+local frame = script.Parent
+local dragToggle = nil
+local dragSpeed = 0.25
+local dragStart = nil
+local startPos = nil
+
+local function updateInput(input)
+	local delta = input.Position - dragStart
+	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
+
+frame.InputBegan:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+		dragToggle = true
+		dragStart = input.Position
+		startPos = frame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragToggle = false
+			end
+		end)
+	end
+end)
+
+UIS.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		if dragToggle then
+			updateInput(input)
+		end
+	end
+end)
+
+end))
+ObjectValue5.Name = "re"
+ObjectValue5.Parent = ScreenGui0
+Frame6.Name = "MainUI"
+Frame6.Parent = ScreenGui0
+Frame6.Position = UDim2.new(0.5, 0, -1, 0)
+Frame6.Visible = false
+Frame6.Size = UDim2.new(0, 248, 0, 147)
+Frame6.BackgroundColor = BrickColor.new("Black metallic")
+Frame6.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+Frame6.BorderColor = BrickColor.new("Really black")
+Frame6.BorderColor3 = Color3.new(0, 0, 0)
+Frame6.BorderSizePixel = 0
+ScrollingFrame7.Name = "ScriptUI"
+ScrollingFrame7.Parent = Frame6
+ScrollingFrame7.Position = UDim2.new(0, 266, 0, 0)
+ScrollingFrame7.Size = UDim2.new(0, 114, 0, 147)
+ScrollingFrame7.Active = true
+ScrollingFrame7.BackgroundColor = BrickColor.new("Black")
+ScrollingFrame7.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+ScrollingFrame7.BorderColor = BrickColor.new("Really black")
+ScrollingFrame7.BorderColor3 = Color3.new(0, 0, 0)
+ScrollingFrame7.BorderSizePixel = 0
+ScrollingFrame7.ScrollBarThickness = 6
+TextButton8.Name = "f3x"
+TextButton8.Parent = ScrollingFrame7
 TextButton8.Size = UDim2.new(0, 108, 0, 16)
 TextButton8.BackgroundColor = BrickColor.new("Black metallic")
 TextButton8.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
@@ -212,16 +236,16 @@ TextButton8.BorderColor3 = Color3.new(0, 0, 0)
 TextButton8.BorderSizePixel = 0
 TextButton8.Font = Enum.Font.Nunito
 TextButton8.FontSize = Enum.FontSize.Size14
-TextButton8.Text = "Dex"
+TextButton8.Text = "F3X"
 TextButton8.TextColor = BrickColor.new("Really black")
 TextButton8.TextColor3 = Color3.new(0, 0, 0)
 TextButton8.TextScaled = true
 TextButton8.TextSize = 14
 TextButton8.TextWrap = true
 TextButton8.TextWrapped = true
-TextButton9.Name = "goner"
-TextButton9.Parent = ScrollingFrame6
-TextButton9.Position = UDim2.new(0, 0, 0, 32)
+TextButton9.Name = "dex"
+TextButton9.Parent = ScrollingFrame7
+TextButton9.Position = UDim2.new(0, 0, 0, 16)
 TextButton9.Size = UDim2.new(0, 108, 0, 16)
 TextButton9.BackgroundColor = BrickColor.new("Black metallic")
 TextButton9.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
@@ -230,16 +254,16 @@ TextButton9.BorderColor3 = Color3.new(0, 0, 0)
 TextButton9.BorderSizePixel = 0
 TextButton9.Font = Enum.Font.Nunito
 TextButton9.FontSize = Enum.FontSize.Size14
-TextButton9.Text = "Goner"
+TextButton9.Text = "Dex"
 TextButton9.TextColor = BrickColor.new("Really black")
 TextButton9.TextColor3 = Color3.new(0, 0, 0)
 TextButton9.TextScaled = true
 TextButton9.TextSize = 14
 TextButton9.TextWrap = true
 TextButton9.TextWrapped = true
-TextButton10.Name = "h-loversgui"
-TextButton10.Parent = ScrollingFrame6
-TextButton10.Position = UDim2.new(0, 0, 0, 48)
+TextButton10.Name = "goner"
+TextButton10.Parent = ScrollingFrame7
+TextButton10.Position = UDim2.new(0, 0, 0, 32)
 TextButton10.Size = UDim2.new(0, 108, 0, 16)
 TextButton10.BackgroundColor = BrickColor.new("Black metallic")
 TextButton10.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
@@ -248,39 +272,53 @@ TextButton10.BorderColor3 = Color3.new(0, 0, 0)
 TextButton10.BorderSizePixel = 0
 TextButton10.Font = Enum.Font.Nunito
 TextButton10.FontSize = Enum.FontSize.Size14
-TextButton10.Text = "H-LoversGUI"
+TextButton10.Text = "Goner"
 TextButton10.TextColor = BrickColor.new("Really black")
 TextButton10.TextColor3 = Color3.new(0, 0, 0)
 TextButton10.TextScaled = true
 TextButton10.TextSize = 14
 TextButton10.TextWrap = true
 TextButton10.TextWrapped = true
-TextBox11.Name = "code"
-TextBox11.Parent = Frame5
-TextBox11.Position = UDim2.new(0, 0, 0, 16)
-TextBox11.Size = UDim2.new(0, 248, 0, 98)
-TextBox11.BackgroundColor = BrickColor.new("Black")
-TextBox11.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
-TextBox11.BorderColor = BrickColor.new("Really black")
-TextBox11.BorderColor3 = Color3.new(0, 0, 0)
-TextBox11.BorderSizePixel = 0
-TextBox11.Font = Enum.Font.SourceSans
-TextBox11.FontSize = Enum.FontSize.Size14
-TextBox11.Text = ""
-TextBox11.TextColor = BrickColor.new("Really black")
-TextBox11.TextColor3 = Color3.new(0, 0, 0)
-TextBox11.TextSize = 14
-TextBox11.TextWrap = true
-TextBox11.TextWrapped = true
-TextBox11.TextXAlignment = Enum.TextXAlignment.Left
-TextBox11.TextYAlignment = Enum.TextYAlignment.Top
-TextBox11.ClearTextOnFocus = false
-LocalScript12.Name = "draggable"
-table.insert(cors,sandbox(LocalScript12,function()
-script.Parent.Draggable = true
-end))
+TextButton11.Name = "h-loversgui"
+TextButton11.Parent = ScrollingFrame7
+TextButton11.Position = UDim2.new(0, 0, 0, 48)
+TextButton11.Size = UDim2.new(0, 108, 0, 16)
+TextButton11.BackgroundColor = BrickColor.new("Black metallic")
+TextButton11.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+TextButton11.BorderColor = BrickColor.new("Really black")
+TextButton11.BorderColor3 = Color3.new(0, 0, 0)
+TextButton11.BorderSizePixel = 0
+TextButton11.Font = Enum.Font.Nunito
+TextButton11.FontSize = Enum.FontSize.Size14
+TextButton11.Text = "H-LoversGUI"
+TextButton11.TextColor = BrickColor.new("Really black")
+TextButton11.TextColor3 = Color3.new(0, 0, 0)
+TextButton11.TextScaled = true
+TextButton11.TextSize = 14
+TextButton11.TextWrap = true
+TextButton11.TextWrapped = true
+TextBox12.Name = "code"
+TextBox12.Parent = Frame6
+TextBox12.Position = UDim2.new(0, 0, 0, 16)
+TextBox12.Size = UDim2.new(0, 248, 0, 98)
+TextBox12.BackgroundColor = BrickColor.new("Black")
+TextBox12.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+TextBox12.BorderColor = BrickColor.new("Really black")
+TextBox12.BorderColor3 = Color3.new(0, 0, 0)
+TextBox12.BorderSizePixel = 0
+TextBox12.Font = Enum.Font.SourceSans
+TextBox12.FontSize = Enum.FontSize.Size14
+TextBox12.Text = ""
+TextBox12.TextColor = BrickColor.new("Really black")
+TextBox12.TextColor3 = Color3.new(0, 0, 0)
+TextBox12.TextSize = 14
+TextBox12.TextWrap = true
+TextBox12.TextWrapped = true
+TextBox12.TextXAlignment = Enum.TextXAlignment.Left
+TextBox12.TextYAlignment = Enum.TextYAlignment.Top
+TextBox12.ClearTextOnFocus = false
 TextLabel13.Name = "name"
-TextLabel13.Parent = Frame5
+TextLabel13.Parent = Frame6
 TextLabel13.Size = UDim2.new(0, 248, 0, 17)
 TextLabel13.BackgroundColor = BrickColor.new("Institutional white")
 TextLabel13.BackgroundColor3 = Color3.new(1, 1, 1)
@@ -297,12 +335,47 @@ TextLabel13.TextScaled = true
 TextLabel13.TextSize = 14
 TextLabel13.TextWrap = true
 TextLabel13.TextWrapped = true
-LocalScript14.Name = "draggable"
+LocalScript14.Name = "drag"
+LocalScript14.Parent = TextLabel13
 table.insert(cors,sandbox(LocalScript14,function()
-script.Parent.Draggable = true
+local UIS = game:GetService('UserInputService')
+local frame = script.Parent.Parent
+local dragToggle = nil
+local dragSpeed = 0.5
+local dragStart = nil
+local startPos = nil
+
+local function updateInput(input)
+	local delta = input.Position - dragStart
+	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
+
+frame.InputBegan:Connect(function(input)
+	if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+		dragToggle = true
+		dragStart = input.Position
+		startPos = frame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragToggle = false
+			end
+		end)
+	end
+end)
+
+UIS.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		if dragToggle then
+			updateInput(input)
+		end
+	end
+end)
+
 end))
 TextButton15.Name = "Run"
-TextButton15.Parent = Frame5
+TextButton15.Parent = Frame6
 TextButton15.Position = UDim2.new(0, 7, 0, 119)
 TextButton15.Size = UDim2.new(0, 76, 0, 21)
 TextButton15.BackgroundColor = BrickColor.new("Black")
@@ -319,6 +392,7 @@ TextButton15.TextScaled = true
 TextButton15.TextSize = 14
 TextButton15.TextWrap = true
 TextButton15.TextWrapped = true
+LocalScript16.Parent = TextButton15
 table.insert(cors,sandbox(LocalScript16,function()
 script.Parent.MouseButton1Down:Connect(function()
 	local code = script.Parent.Parent.code.Text
@@ -329,7 +403,7 @@ script.Parent.MouseButton1Down:Connect(function()
 end)
 end))
 TextButton17.Name = "Clear"
-TextButton17.Parent = Frame5
+TextButton17.Parent = Frame6
 TextButton17.Position = UDim2.new(0, 87, 0, 119)
 TextButton17.Size = UDim2.new(0, 76, 0, 21)
 TextButton17.BackgroundColor = BrickColor.new("Black")
@@ -346,13 +420,14 @@ TextButton17.TextScaled = true
 TextButton17.TextSize = 14
 TextButton17.TextWrap = true
 TextButton17.TextWrapped = true
+LocalScript18.Parent = TextButton17
 table.insert(cors,sandbox(LocalScript18,function()
 script.Parent.MouseButton1Down:Connect(function()
 	script.Parent.Parent.code.Text = ""
 end)
 end))
 TextButton19.Name = "Exit"
-TextButton19.Parent = Frame5
+TextButton19.Parent = Frame6
 TextButton19.Position = UDim2.new(0, 166, 0, 119)
 TextButton19.Size = UDim2.new(0, 76, 0, 21)
 TextButton19.BackgroundColor = BrickColor.new("Black")
@@ -369,13 +444,14 @@ TextButton19.TextScaled = true
 TextButton19.TextSize = 14
 TextButton19.TextWrap = true
 TextButton19.TextWrapped = true
+LocalScript20.Parent = TextButton19
 table.insert(cors,sandbox(LocalScript20,function()
 script.Parent.MouseButton1Down:Connect(function()
 	script.Parent.Parent.Parent:Destroy()
 end)
 end))
 for i,v in pairs(mas:GetChildren()) do
-	v.Parent = workspace
+	v.Parent = game:GetService("Players").LocalPlayer.PlayerGui
 	pcall(function() v:MakeJoints() end)
 end
 mas:Destroy()
