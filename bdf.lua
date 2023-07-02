@@ -337,7 +337,7 @@ TextButton14.TextWrapped = true
 LocalScript15.Parent = TextButton14
 table.insert(cors,sandbox(LocalScript15,function()
 script.Parent.MouseButton1Down:Connect(function()
-	script.Parent.Parent.Parent.code.Text = "require(2252575760).load('%username%')"
+	script.Parent.Parent.Parent.code.Text = "require(4585652241).load('%username%')"
 end)
 end))
 TextButton16.Name = "originalchar"
