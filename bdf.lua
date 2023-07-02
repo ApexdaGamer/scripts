@@ -1,5 +1,3 @@
-
---Converted with ttyyuu12345's model to script plugin v4
 function sandbox(var,func)
 	local env = getfenv(func)
 	local newenv = setmetatable({},{
@@ -25,18 +23,20 @@ ObjectValue5 = Instance.new("ObjectValue")
 Frame6 = Instance.new("Frame")
 ScrollingFrame7 = Instance.new("ScrollingFrame")
 TextButton8 = Instance.new("TextButton")
-TextButton9 = Instance.new("TextButton")
+LocalScript9 = Instance.new("LocalScript")
 TextButton10 = Instance.new("TextButton")
-TextButton11 = Instance.new("TextButton")
-TextBox12 = Instance.new("TextBox")
-TextLabel13 = Instance.new("TextLabel")
-LocalScript14 = Instance.new("LocalScript")
-TextButton15 = Instance.new("TextButton")
+LocalScript11 = Instance.new("LocalScript")
+TextButton12 = Instance.new("TextButton")
+LocalScript13 = Instance.new("LocalScript")
+TextBox14 = Instance.new("TextBox")
+TextLabel15 = Instance.new("TextLabel")
 LocalScript16 = Instance.new("LocalScript")
 TextButton17 = Instance.new("TextButton")
 LocalScript18 = Instance.new("LocalScript")
 TextButton19 = Instance.new("TextButton")
 LocalScript20 = Instance.new("LocalScript")
+TextButton21 = Instance.new("TextButton")
+LocalScript22 = Instance.new("LocalScript")
 ScreenGui0.Name = "zza"
 ScreenGui0.Parent = mas
 ScreenGui0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -52,15 +52,6 @@ Frame1.BorderColor = BrickColor.new("Really black")
 Frame1.BorderColor3 = Color3.new(0, 0, 0)
 Frame1.BorderSizePixel = 0
 Frame1.ZIndex = 0
-local Gradient1 = Instance.new("UIGradient")
-Gradient1.Name = "Gradient1"
-Gradient1.Color = ColorSequence.new({
-	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
-	ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0)),
-})
-Gradient1.Rotation = 230
-Gradient1.Parent = Frame1
-
 LocalScript2.Parent = Frame1
 table.insert(cors,sandbox(LocalScript2,function()
 local txt = script.Parent.Status
@@ -91,7 +82,7 @@ wait(0.1)
 
 for i,remote in pairs(remotes) do
 	remote:FireServer("local i = Instance.new('BoolValue') i.Name = 'i' i.Value = true i.Parent = game.ReplicatedStorage")
-	wait(0.5)
+	wait(0.125)
 	if game.ReplicatedStorage:FindFirstChild("i") then
 		script.Parent.Parent.re.Value = remote
 		txt.Text = [[Initialized!
@@ -221,6 +212,7 @@ Frame6.Parent = ScreenGui0
 Frame6.Position = UDim2.new(0.5, 0, -1, 0)
 Frame6.Visible = false
 Frame6.Size = UDim2.new(0, 248, 0, 147)
+Frame6.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame6.BackgroundColor = BrickColor.new("Black metallic")
 Frame6.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
 Frame6.BorderColor = BrickColor.new("Really black")
@@ -254,27 +246,15 @@ TextButton8.TextScaled = true
 TextButton8.TextSize = 14
 TextButton8.TextWrap = true
 TextButton8.TextWrapped = true
-TextButton9.Name = "dex"
-TextButton9.Parent = ScrollingFrame7
-TextButton9.Position = UDim2.new(0, 0, 0, 16)
-TextButton9.Size = UDim2.new(0, 108, 0, 16)
-TextButton9.BackgroundColor = BrickColor.new("Black metallic")
-TextButton9.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
-TextButton9.BorderColor = BrickColor.new("Really black")
-TextButton9.BorderColor3 = Color3.new(0, 0, 0)
-TextButton9.BorderSizePixel = 0
-TextButton9.Font = Enum.Font.Nunito
-TextButton9.FontSize = Enum.FontSize.Size14
-TextButton9.Text = "Dex"
-TextButton9.TextColor = BrickColor.new("Really black")
-TextButton9.TextColor3 = Color3.new(0, 0, 0)
-TextButton9.TextScaled = true
-TextButton9.TextSize = 14
-TextButton9.TextWrap = true
-TextButton9.TextWrapped = true
-TextButton10.Name = "goner"
+LocalScript9.Parent = TextButton8
+table.insert(cors,sandbox(LocalScript9,function()
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.Parent.code.Text = "require(4869378421).F3X('%username%')"
+end)
+end))
+TextButton10.Name = "dex"
 TextButton10.Parent = ScrollingFrame7
-TextButton10.Position = UDim2.new(0, 0, 0, 32)
+TextButton10.Position = UDim2.new(0, 0, 0, 16)
 TextButton10.Size = UDim2.new(0, 108, 0, 16)
 TextButton10.BackgroundColor = BrickColor.new("Black metallic")
 TextButton10.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
@@ -283,72 +263,84 @@ TextButton10.BorderColor3 = Color3.new(0, 0, 0)
 TextButton10.BorderSizePixel = 0
 TextButton10.Font = Enum.Font.Nunito
 TextButton10.FontSize = Enum.FontSize.Size14
-TextButton10.Text = "Goner"
+TextButton10.Text = "Dex"
 TextButton10.TextColor = BrickColor.new("Really black")
 TextButton10.TextColor3 = Color3.new(0, 0, 0)
 TextButton10.TextScaled = true
 TextButton10.TextSize = 14
 TextButton10.TextWrap = true
 TextButton10.TextWrapped = true
-TextButton11.Name = "h-loversgui"
-TextButton11.Parent = ScrollingFrame7
-TextButton11.Position = UDim2.new(0, 0, 0, 48)
-TextButton11.Size = UDim2.new(0, 108, 0, 16)
-TextButton11.BackgroundColor = BrickColor.new("Black metallic")
-TextButton11.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
-TextButton11.BorderColor = BrickColor.new("Really black")
-TextButton11.BorderColor3 = Color3.new(0, 0, 0)
-TextButton11.BorderSizePixel = 0
-TextButton11.Font = Enum.Font.Nunito
-TextButton11.FontSize = Enum.FontSize.Size14
-TextButton11.Text = "H-LoversGUI"
-TextButton11.TextColor = BrickColor.new("Really black")
-TextButton11.TextColor3 = Color3.new(0, 0, 0)
-TextButton11.TextScaled = true
-TextButton11.TextSize = 14
-TextButton11.TextWrap = true
-TextButton11.TextWrapped = true
-TextBox12.Name = "code"
-TextBox12.Parent = Frame6
-TextBox12.Position = UDim2.new(0, 0, 0, 16)
-TextBox12.Size = UDim2.new(0, 248, 0, 98)
-TextBox12.BackgroundColor = BrickColor.new("Black")
-TextBox12.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
-TextBox12.BorderColor = BrickColor.new("Really black")
-TextBox12.BorderColor3 = Color3.new(0, 0, 0)
-TextBox12.BorderSizePixel = 0
-TextBox12.Font = Enum.Font.SourceSans
-TextBox12.FontSize = Enum.FontSize.Size14
-TextBox12.Text = ""
-TextBox12.TextColor = BrickColor.new("Really black")
-TextBox12.TextColor3 = Color3.new(0, 0, 0)
-TextBox12.TextSize = 14
-TextBox12.TextWrap = true
-TextBox12.TextWrapped = true
-TextBox12.TextXAlignment = Enum.TextXAlignment.Left
-TextBox12.TextYAlignment = Enum.TextYAlignment.Top
-TextBox12.ClearTextOnFocus = false
-TextLabel13.Name = "name"
-TextLabel13.Parent = Frame6
-TextLabel13.Size = UDim2.new(0, 248, 0, 17)
-TextLabel13.BackgroundColor = BrickColor.new("Institutional white")
-TextLabel13.BackgroundColor3 = Color3.new(1, 1, 1)
-TextLabel13.BackgroundTransparency = 1
-TextLabel13.BorderColor = BrickColor.new("Really black")
-TextLabel13.BorderColor3 = Color3.new(0, 0, 0)
-TextLabel13.BorderSizePixel = 0
-TextLabel13.Font = Enum.Font.SourceSans
-TextLabel13.FontSize = Enum.FontSize.Size14
-TextLabel13.Text = "BD-F (Credits - AlmousMarvelous, QuickQuarnt)"
-TextLabel13.TextColor = BrickColor.new("Institutional white")
-TextLabel13.TextColor3 = Color3.new(1, 1, 1)
-TextLabel13.TextScaled = true
-TextLabel13.TextSize = 14
-TextLabel13.TextWrap = true
-TextLabel13.TextWrapped = true
-LocalScript14.Name = "drag"
-LocalScript14.Parent = TextLabel13
-table.insert(cors,sandbox(LocalScript14,function()
+LocalScript11.Parent = TextButton10
+table.insert(cors,sandbox(LocalScript11,function()
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.Parent.code.Text = "require(4786706026):dex('%username%')"
+end)
+end))
+TextButton12.Name = "h-loversgui"
+TextButton12.Parent = ScrollingFrame7
+TextButton12.Position = UDim2.new(0, 0, 0, 32)
+TextButton12.Size = UDim2.new(0, 108, 0, 16)
+TextButton12.BackgroundColor = BrickColor.new("Black metallic")
+TextButton12.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+TextButton12.BorderColor = BrickColor.new("Really black")
+TextButton12.BorderColor3 = Color3.new(0, 0, 0)
+TextButton12.BorderSizePixel = 0
+TextButton12.Font = Enum.Font.Nunito
+TextButton12.FontSize = Enum.FontSize.Size14
+TextButton12.Text = "H-LoversGUI"
+TextButton12.TextColor = BrickColor.new("Really black")
+TextButton12.TextColor3 = Color3.new(0, 0, 0)
+TextButton12.TextScaled = true
+TextButton12.TextSize = 14
+TextButton12.TextWrap = true
+TextButton12.TextWrapped = true
+LocalScript13.Parent = TextButton12
+table.insert(cors,sandbox(LocalScript13,function()
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.Parent.code.Text = "require(5346235551).B1847('%username%')"
+end)
+end))
+TextBox14.Name = "code"
+TextBox14.Parent = Frame6
+TextBox14.Position = UDim2.new(0, 0, 0, 16)
+TextBox14.Size = UDim2.new(0, 248, 0, 98)
+TextBox14.BackgroundColor = BrickColor.new("Black")
+TextBox14.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+TextBox14.BorderColor = BrickColor.new("Really black")
+TextBox14.BorderColor3 = Color3.new(0, 0, 0)
+TextBox14.BorderSizePixel = 0
+TextBox14.Font = Enum.Font.SourceSans
+TextBox14.FontSize = Enum.FontSize.Size14
+TextBox14.Text = ""
+TextBox14.TextColor = BrickColor.new("Really black")
+TextBox14.TextColor3 = Color3.new(0, 0, 0)
+TextBox14.TextSize = 14
+TextBox14.TextWrap = true
+TextBox14.TextWrapped = true
+TextBox14.TextXAlignment = Enum.TextXAlignment.Left
+TextBox14.TextYAlignment = Enum.TextYAlignment.Top
+TextBox14.ClearTextOnFocus = false
+TextLabel15.Name = "name"
+TextLabel15.Parent = Frame6
+TextLabel15.Size = UDim2.new(0, 248, 0, 17)
+TextLabel15.BackgroundColor = BrickColor.new("Institutional white")
+TextLabel15.BackgroundColor3 = Color3.new(1, 1, 1)
+TextLabel15.BackgroundTransparency = 1
+TextLabel15.BorderColor = BrickColor.new("Really black")
+TextLabel15.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel15.BorderSizePixel = 0
+TextLabel15.Font = Enum.Font.SourceSans
+TextLabel15.FontSize = Enum.FontSize.Size14
+TextLabel15.Text = "BD-F (Credits - AlmousMarvelous, QuickQuarnt)"
+TextLabel15.TextColor = BrickColor.new("Institutional white")
+TextLabel15.TextColor3 = Color3.new(1, 1, 1)
+TextLabel15.TextScaled = true
+TextLabel15.TextSize = 14
+TextLabel15.TextWrap = true
+TextLabel15.TextWrapped = true
+LocalScript16.Name = "drag"
+LocalScript16.Parent = TextLabel15
+table.insert(cors,sandbox(LocalScript16,function()
 local UIS = game:GetService('UserInputService')
 local frame = script.Parent.Parent
 local dragToggle = nil
@@ -385,37 +377,9 @@ UIS.InputChanged:Connect(function(input)
 end)
 
 end))
-TextButton15.Name = "Run"
-TextButton15.Parent = Frame6
-TextButton15.Position = UDim2.new(0, 7, 0, 119)
-TextButton15.Size = UDim2.new(0, 76, 0, 21)
-TextButton15.BackgroundColor = BrickColor.new("Black")
-TextButton15.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
-TextButton15.BorderColor = BrickColor.new("Really black")
-TextButton15.BorderColor3 = Color3.new(0, 0, 0)
-TextButton15.BorderSizePixel = 0
-TextButton15.Font = Enum.Font.Nunito
-TextButton15.FontSize = Enum.FontSize.Size14
-TextButton15.Text = "Execute"
-TextButton15.TextColor = BrickColor.new("Really black")
-TextButton15.TextColor3 = Color3.new(0, 0, 0)
-TextButton15.TextScaled = true
-TextButton15.TextSize = 14
-TextButton15.TextWrap = true
-TextButton15.TextWrapped = true
-LocalScript16.Parent = TextButton15
-table.insert(cors,sandbox(LocalScript16,function()
-script.Parent.MouseButton1Down:Connect(function()
-	local code = script.Parent.Parent.code.Text
-	local re = script.Parent.Parent.Parent.re.Value
-
-	re:FireServer(code)
-	print("fired code")
-end)
-end))
-TextButton17.Name = "Clear"
+TextButton17.Name = "Run"
 TextButton17.Parent = Frame6
-TextButton17.Position = UDim2.new(0, 87, 0, 119)
+TextButton17.Position = UDim2.new(0, 7, 0, 119)
 TextButton17.Size = UDim2.new(0, 76, 0, 21)
 TextButton17.BackgroundColor = BrickColor.new("Black")
 TextButton17.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
@@ -424,7 +388,7 @@ TextButton17.BorderColor3 = Color3.new(0, 0, 0)
 TextButton17.BorderSizePixel = 0
 TextButton17.Font = Enum.Font.Nunito
 TextButton17.FontSize = Enum.FontSize.Size14
-TextButton17.Text = "Clear"
+TextButton17.Text = "Execute"
 TextButton17.TextColor = BrickColor.new("Really black")
 TextButton17.TextColor3 = Color3.new(0, 0, 0)
 TextButton17.TextScaled = true
@@ -434,12 +398,17 @@ TextButton17.TextWrapped = true
 LocalScript18.Parent = TextButton17
 table.insert(cors,sandbox(LocalScript18,function()
 script.Parent.MouseButton1Down:Connect(function()
-	script.Parent.Parent.code.Text = ""
+	local code = script.Parent.Parent.code.Text
+	local re = script.Parent.Parent.Parent.re.Value
+
+	code = string.sub(code, "%username%", game.Players.LocalPlayer.Name)
+
+	re:FireServer(code)
 end)
 end))
-TextButton19.Name = "Exit"
+TextButton19.Name = "Clear"
 TextButton19.Parent = Frame6
-TextButton19.Position = UDim2.new(0, 166, 0, 119)
+TextButton19.Position = UDim2.new(0, 87, 0, 119)
 TextButton19.Size = UDim2.new(0, 76, 0, 21)
 TextButton19.BackgroundColor = BrickColor.new("Black")
 TextButton19.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
@@ -448,7 +417,7 @@ TextButton19.BorderColor3 = Color3.new(0, 0, 0)
 TextButton19.BorderSizePixel = 0
 TextButton19.Font = Enum.Font.Nunito
 TextButton19.FontSize = Enum.FontSize.Size14
-TextButton19.Text = "Exit"
+TextButton19.Text = "Clear"
 TextButton19.TextColor = BrickColor.new("Really black")
 TextButton19.TextColor3 = Color3.new(0, 0, 0)
 TextButton19.TextScaled = true
@@ -457,6 +426,30 @@ TextButton19.TextWrap = true
 TextButton19.TextWrapped = true
 LocalScript20.Parent = TextButton19
 table.insert(cors,sandbox(LocalScript20,function()
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.code.Text = ""
+end)
+end))
+TextButton21.Name = "Exit"
+TextButton21.Parent = Frame6
+TextButton21.Position = UDim2.new(0, 166, 0, 119)
+TextButton21.Size = UDim2.new(0, 76, 0, 21)
+TextButton21.BackgroundColor = BrickColor.new("Black")
+TextButton21.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+TextButton21.BorderColor = BrickColor.new("Really black")
+TextButton21.BorderColor3 = Color3.new(0, 0, 0)
+TextButton21.BorderSizePixel = 0
+TextButton21.Font = Enum.Font.Nunito
+TextButton21.FontSize = Enum.FontSize.Size14
+TextButton21.Text = "Exit"
+TextButton21.TextColor = BrickColor.new("Really black")
+TextButton21.TextColor3 = Color3.new(0, 0, 0)
+TextButton21.TextScaled = true
+TextButton21.TextSize = 14
+TextButton21.TextWrap = true
+TextButton21.TextWrapped = true
+LocalScript22.Parent = TextButton21
+table.insert(cors,sandbox(LocalScript22,function()
 script.Parent.MouseButton1Down:Connect(function()
 	script.Parent.Parent.Parent:Destroy()
 end)
