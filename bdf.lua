@@ -2,9 +2,7 @@ cors = {}
 mas = Instance.new("Model",game:GetService("Lighting"))
 ScreenGui0 = Instance.new("ScreenGui")
 Frame1 = Instance.new("Frame")
-LocalScript2 = Instance.new("LocalScript")
 TextLabel3 = Instance.new("TextLabel")
-LocalScript4 = Instance.new("LocalScript")
 ObjectValue5 = Instance.new("ObjectValue")
 Frame6 = Instance.new("Frame")
 ScrollingFrame7 = Instance.new("ScrollingFrame")
@@ -14,13 +12,9 @@ TextButton10 = Instance.new("TextButton")
 TextButton11 = Instance.new("TextButton")
 TextBox12 = Instance.new("TextBox")
 TextLabel13 = Instance.new("TextLabel")
-LocalScript14 = Instance.new("LocalScript")
 TextButton15 = Instance.new("TextButton")
-LocalScript16 = Instance.new("LocalScript")
 TextButton17 = Instance.new("TextButton")
-LocalScript18 = Instance.new("LocalScript")
 TextButton19 = Instance.new("TextButton")
-LocalScript20 = Instance.new("LocalScript")
 ScreenGui0.Name = "zza"
 ScreenGui0.Parent = mas
 ScreenGui0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -36,7 +30,6 @@ Frame1.BorderColor = BrickColor.new("Really black")
 Frame1.BorderColor3 = Color3.new(0, 0, 0)
 Frame1.BorderSizePixel = 0
 Frame1.ZIndex = 0
-LocalScript2.Parent = Frame1
 table.insert(cors,function()
 local txt = script.Parent.Status
 
@@ -146,8 +139,6 @@ TextLabel3.TextWrap = true
 TextLabel3.TextWrapped = true
 TextLabel3.TextXAlignment = Enum.TextXAlignment.Left
 TextLabel3.TextYAlignment = Enum.TextYAlignment.Top
-LocalScript4.Name = "drag"
-LocalScript4.Parent = Frame1
 table.insert(cors,function()
 --Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
 --Put this inside of your Frame and configure the speed if you would like.
@@ -321,8 +312,6 @@ TextLabel13.TextScaled = true
 TextLabel13.TextSize = 14
 TextLabel13.TextWrap = true
 TextLabel13.TextWrapped = true
-LocalScript14.Name = "drag"
-LocalScript14.Parent = TextLabel13
 table.insert(cors,function()
 local UIS = game:GetService('UserInputService')
 local frame = script.Parent.Parent
@@ -378,7 +367,6 @@ TextButton15.TextScaled = true
 TextButton15.TextSize = 14
 TextButton15.TextWrap = true
 TextButton15.TextWrapped = true
-LocalScript16.Parent = TextButton15
 table.insert(cors,function()
 script.Parent.MouseButton1Down:Connect(function()
 	local code = script.Parent.Parent.code.Text
@@ -406,7 +394,6 @@ TextButton17.TextScaled = true
 TextButton17.TextSize = 14
 TextButton17.TextWrap = true
 TextButton17.TextWrapped = true
-LocalScript18.Parent = TextButton17
 table.insert(cors,function()
 script.Parent.MouseButton1Down:Connect(function()
 	script.Parent.Parent.code.Text = ""
@@ -430,7 +417,6 @@ TextButton19.TextScaled = true
 TextButton19.TextSize = 14
 TextButton19.TextWrap = true
 TextButton19.TextWrapped = true
-LocalScript20.Parent = TextButton19
 table.insert(cors,function()
 script.Parent.MouseButton1Down:Connect(function()
 	script.Parent.Parent.Parent:Destroy()
