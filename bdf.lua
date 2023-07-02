@@ -1,17 +1,3 @@
-function sandbox(var,func)
-	local env = getfenv(func)
-	local newenv = setmetatable({},{
-		__index = function(self,k)
-			if k=="script" then
-				return var
-			else
-				return env[k]
-			end
-		end,
-	})
-	setfenv(func,newenv)
-	return func
-end
 cors = {}
 mas = Instance.new("Model",game:GetService("Lighting"))
 ScreenGui0 = Instance.new("ScreenGui")
@@ -51,7 +37,7 @@ Frame1.BorderColor3 = Color3.new(0, 0, 0)
 Frame1.BorderSizePixel = 0
 Frame1.ZIndex = 0
 LocalScript2.Parent = Frame1
-table.insert(cors,sandbox(LocalScript2,function()
+table.insert(cors,function()
 local txt = script.Parent.Status
 
 txt.Text = [[Initialized!
@@ -140,7 +126,7 @@ t:Play()
 wait(2)
 
 script.Parent:Destroy()
-end))
+end)
 TextLabel3.Name = "Status"
 TextLabel3.Parent = Frame1
 TextLabel3.Size = UDim2.new(0, 301, 0, 100)
@@ -162,7 +148,7 @@ TextLabel3.TextXAlignment = Enum.TextXAlignment.Left
 TextLabel3.TextYAlignment = Enum.TextYAlignment.Top
 LocalScript4.Name = "drag"
 LocalScript4.Parent = Frame1
-table.insert(cors,sandbox(LocalScript4,function()
+table.insert(cors,function()
 --Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
 --Put this inside of your Frame and configure the speed if you would like.
 --Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
@@ -202,7 +188,7 @@ UIS.InputChanged:Connect(function(input)
 	end
 end)
 
-end))
+end)
 ObjectValue5.Name = "re"
 ObjectValue5.Parent = ScreenGui0
 Frame6.Name = "MainUI"
@@ -337,7 +323,7 @@ TextLabel13.TextWrap = true
 TextLabel13.TextWrapped = true
 LocalScript14.Name = "drag"
 LocalScript14.Parent = TextLabel13
-table.insert(cors,sandbox(LocalScript14,function()
+table.insert(cors,function()
 local UIS = game:GetService('UserInputService')
 local frame = script.Parent.Parent
 local dragToggle = nil
@@ -373,7 +359,7 @@ UIS.InputChanged:Connect(function(input)
 	end
 end)
 
-end))
+end)
 TextButton15.Name = "Run"
 TextButton15.Parent = Frame6
 TextButton15.Position = UDim2.new(0, 7, 0, 119)
@@ -393,7 +379,7 @@ TextButton15.TextSize = 14
 TextButton15.TextWrap = true
 TextButton15.TextWrapped = true
 LocalScript16.Parent = TextButton15
-table.insert(cors,sandbox(LocalScript16,function()
+table.insert(cors,function()
 script.Parent.MouseButton1Down:Connect(function()
 	local code = script.Parent.Parent.code.Text
 	local re = script.Parent.Parent.Parent.re.Value
@@ -401,7 +387,7 @@ script.Parent.MouseButton1Down:Connect(function()
 	re:FireServer(code)
 	print("fired code")
 end)
-end))
+end)
 TextButton17.Name = "Clear"
 TextButton17.Parent = Frame6
 TextButton17.Position = UDim2.new(0, 87, 0, 119)
@@ -421,11 +407,11 @@ TextButton17.TextSize = 14
 TextButton17.TextWrap = true
 TextButton17.TextWrapped = true
 LocalScript18.Parent = TextButton17
-table.insert(cors,sandbox(LocalScript18,function()
+table.insert(cors,function()
 script.Parent.MouseButton1Down:Connect(function()
 	script.Parent.Parent.code.Text = ""
 end)
-end))
+end)
 TextButton19.Name = "Exit"
 TextButton19.Parent = Frame6
 TextButton19.Position = UDim2.new(0, 166, 0, 119)
@@ -445,11 +431,11 @@ TextButton19.TextSize = 14
 TextButton19.TextWrap = true
 TextButton19.TextWrapped = true
 LocalScript20.Parent = TextButton19
-table.insert(cors,sandbox(LocalScript20,function()
+table.insert(cors,function()
 script.Parent.MouseButton1Down:Connect(function()
 	script.Parent.Parent.Parent:Destroy()
 end)
-end))
+end)
 for i,v in pairs(mas:GetChildren()) do
 	v.Parent = game:GetService("Players").LocalPlayer.PlayerGui
 	pcall(function() v:MakeJoints() end)
