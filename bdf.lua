@@ -52,7 +52,7 @@ Frame1.BorderColor = BrickColor.new("Really black")
 Frame1.BorderColor3 = Color3.new(0, 0, 0)
 Frame1.BorderSizePixel = 0
 Frame1.ZIndex = 0
-local Gradient1 = Instance.new("Gradient1")
+local Gradient1 = Instance.new("UIGradient")
 Gradient1.Name = "Gradient1"
 Gradient1.Color = ColorSequence.new({
 	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
