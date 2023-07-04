@@ -115,7 +115,7 @@ wait(0.1)
 for i,remote in pairs(remotes) do
 	if not string.match(script.Parent.Parent.exclude.Value, remote.Name) then
 		remote:FireServer("local i = Instance.new('BoolValue') i.Name = 'i' i.Value = true i.Parent = game.ReplicatedStorage")
-		wait(0.125)
+		wait(0.25)
 		if game.ReplicatedStorage:FindFirstChild("i") then
 			script.Parent.Parent.re.Value = remote
 			txt.Text = [[Initialized!
