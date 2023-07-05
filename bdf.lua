@@ -711,7 +711,6 @@ BoolValue34.Name = "refunc"
 BoolValue34.Parent = ScreenGui0
 for i,v in pairs(mas:GetChildren()) do
 	v.Parent = game:GetService("Players").LocalPlayer.PlayerGui
-	pcall(function() v:MakeJoints() end)
 end
 mas:Destroy()
 for i,v in pairs(cors) do
