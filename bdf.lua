@@ -55,7 +55,6 @@ BoolValue37 = Instance.new("BoolValue")
 StringValue38 = Instance.new("StringValue")
 ScreenGui0.Name = "zza"
 ScreenGui0.Parent = mas
-ScreenGui0.Enabled = false
 ScreenGui0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Frame1.Name = "LoadingUI"
 Frame1.Parent = ScreenGui0
