@@ -44,14 +44,17 @@ LocalScript26 = Instance.new("LocalScript")
 Frame27 = Instance.new("Frame")
 LocalScript28 = Instance.new("LocalScript")
 TextBox29 = Instance.new("TextBox")
-TextButton30 = Instance.new("TextButton")
-LocalScript31 = Instance.new("LocalScript")
-TextLabel32 = Instance.new("TextLabel")
-StringValue33 = Instance.new("StringValue")
-BoolValue34 = Instance.new("BoolValue")
+LocalScript30 = Instance.new("LocalScript")
+TextButton31 = Instance.new("TextButton")
+LocalScript32 = Instance.new("LocalScript")
+TextLabel33 = Instance.new("TextLabel")
+TextButton34 = Instance.new("TextButton")
+LocalScript35 = Instance.new("LocalScript")
+StringValue36 = Instance.new("StringValue")
+BoolValue37 = Instance.new("BoolValue")
+StringValue38 = Instance.new("StringValue")
 ScreenGui0.Name = "zza"
 ScreenGui0.Parent = mas
-ScreenGui0.ResetOnSpawn = false
 ScreenGui0.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Frame1.Name = "LoadingUI"
 Frame1.Parent = ScreenGui0
@@ -234,9 +237,6 @@ TextLabel3.TextYAlignment = Enum.TextYAlignment.Top
 LocalScript4.Name = "drag"
 LocalScript4.Parent = Frame1
 table.insert(cors,sandbox(LocalScript4,function()
---Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
---Put this inside of your Frame and configure the speed if you would like.
---Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
 
 local UIS = game:GetService('UserInputService')
 local frame = script.Parent
@@ -281,6 +281,7 @@ Frame6.Parent = ScreenGui0
 Frame6.Position = UDim2.new(0.5, 0, -0.5, 0)
 Frame6.Visible = false
 Frame6.Size = UDim2.new(0, 248, 0, 147)
+Frame6.Active = true
 Frame6.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame6.BackgroundColor = BrickColor.new("Black metallic")
 Frame6.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
@@ -437,6 +438,7 @@ TextBox18.TextWrapped = true
 TextBox18.TextXAlignment = Enum.TextXAlignment.Left
 TextBox18.TextYAlignment = Enum.TextYAlignment.Top
 TextBox18.ClearTextOnFocus = false
+TextBox18.MultiLine = true
 TextLabel19.Name = "name"
 TextLabel19.Parent = Frame6
 TextLabel19.Size = UDim2.new(0, 248, 0, 17)
@@ -597,10 +599,6 @@ Gradient2.Parent = Frame27
 LocalScript28.Name = "drag"
 LocalScript28.Parent = Frame27
 table.insert(cors,sandbox(LocalScript28,function()
---Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
---Put this inside of your Frame and configure the speed if you would like.
---Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
-
 local UIS = game:GetService('UserInputService')
 local frame = script.Parent
 local dragToggle = nil
@@ -658,26 +656,40 @@ TextBox29.TextXAlignment = Enum.TextXAlignment.Left
 TextBox29.TextYAlignment = Enum.TextYAlignment.Top
 TextBox29.PlaceholderColor3 = Color3.new(0.784314, 0.784314, 0.784314)
 TextBox29.PlaceholderText = "List all RemoteEvent names to exclude.."
-TextButton30.Name = "Exclude"
-TextButton30.Parent = Frame27
-TextButton30.Position = UDim2.new(0, 0, 0, 77)
-TextButton30.Size = UDim2.new(0, 301, 0, 23)
-TextButton30.BackgroundColor = BrickColor.new("Black")
-TextButton30.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
-TextButton30.BorderColor = BrickColor.new("Really black")
-TextButton30.BorderColor3 = Color3.new(0, 0, 0)
-TextButton30.BorderSizePixel = 0
-TextButton30.Font = Enum.Font.Nunito
-TextButton30.FontSize = Enum.FontSize.Size14
-TextButton30.Text = "Exclude"
-TextButton30.TextColor = BrickColor.new("Really black")
-TextButton30.TextColor3 = Color3.new(0, 0, 0)
-TextButton30.TextScaled = true
-TextButton30.TextSize = 14
-TextButton30.TextWrap = true
-TextButton30.TextWrapped = true
-LocalScript31.Parent = TextButton30
-table.insert(cors,sandbox(LocalScript31,function()
+LocalScript30.Parent = TextBox29
+table.insert(cors,sandbox(LocalScript30,function()
+local suggest = script.Parent.Parent.Parent.suggest
+
+for i,v in pairs(game:GetService("ReplicatedStorage"):GetDescendants()) do
+	if v.Name == "__FUNCTION" then
+		script.Parent.PlaceholderText = [[Suggestions:
+		]]..v.Parent.Name..[[ - Adonis AntiCheat
+		]]
+		
+		suggest.Value = suggest.Value.." "..v.Parent.Name
+	end
+end
+end))
+TextButton31.Name = "Exclude"
+TextButton31.Parent = Frame27
+TextButton31.Position = UDim2.new(0, 0, 0, 77)
+TextButton31.Size = UDim2.new(0, 145, 0, 23)
+TextButton31.BackgroundColor = BrickColor.new("Black")
+TextButton31.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+TextButton31.BorderColor = BrickColor.new("Really black")
+TextButton31.BorderColor3 = Color3.new(0, 0, 0)
+TextButton31.BorderSizePixel = 0
+TextButton31.Font = Enum.Font.Nunito
+TextButton31.FontSize = Enum.FontSize.Size14
+TextButton31.Text = "Exclude"
+TextButton31.TextColor = BrickColor.new("Really black")
+TextButton31.TextColor3 = Color3.new(0, 0, 0)
+TextButton31.TextScaled = true
+TextButton31.TextSize = 14
+TextButton31.TextWrap = true
+TextButton31.TextWrapped = true
+LocalScript32.Parent = TextButton31
+table.insert(cors,sandbox(LocalScript32,function()
 script.Parent.MouseButton1Down:Connect(function()
 	script.Parent.Parent.Parent.exclude.Value = script.Parent.Parent.TextBox.Text
 	local rdy = Instance.new("BoolValue")
@@ -687,28 +699,54 @@ script.Parent.MouseButton1Down:Connect(function()
 	script.Parent.Parent:Destroy()
 end)
 end))
-TextLabel32.Name = "title"
-TextLabel32.Parent = Frame27
-TextLabel32.Position = UDim2.new(0, 0, -0.00639038067, 0)
-TextLabel32.Size = UDim2.new(0, 301, 0, 13)
-TextLabel32.BackgroundColor = BrickColor.new("Black")
-TextLabel32.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
-TextLabel32.BorderColor = BrickColor.new("Really black")
-TextLabel32.BorderColor3 = Color3.new(0, 0, 0)
-TextLabel32.BorderSizePixel = 0
-TextLabel32.Font = Enum.Font.SourceSansBold
-TextLabel32.FontSize = Enum.FontSize.Size14
-TextLabel32.Text = "BD-F - Credits to QuickQuarnt & AlmousMarvelous"
-TextLabel32.TextColor = BrickColor.new("Institutional white")
-TextLabel32.TextColor3 = Color3.new(1, 1, 1)
-TextLabel32.TextSize = 14
-TextLabel32.TextWrap = true
-TextLabel32.TextWrapped = true
-TextLabel32.TextXAlignment = Enum.TextXAlignment.Left
-StringValue33.Name = "exclude"
-StringValue33.Parent = ScreenGui0
-BoolValue34.Name = "refunc"
-BoolValue34.Parent = ScreenGui0
+TextLabel33.Name = "title"
+TextLabel33.Parent = Frame27
+TextLabel33.Position = UDim2.new(0, 0, -0.00639038067, 0)
+TextLabel33.Size = UDim2.new(0, 301, 0, 13)
+TextLabel33.BackgroundColor = BrickColor.new("Black")
+TextLabel33.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+TextLabel33.BorderColor = BrickColor.new("Really black")
+TextLabel33.BorderColor3 = Color3.new(0, 0, 0)
+TextLabel33.BorderSizePixel = 0
+TextLabel33.Font = Enum.Font.SourceSansBold
+TextLabel33.FontSize = Enum.FontSize.Size14
+TextLabel33.Text = "BD-F - Credits to QuickQuarnt & AlmousMarvelous"
+TextLabel33.TextColor = BrickColor.new("Institutional white")
+TextLabel33.TextColor3 = Color3.new(1, 1, 1)
+TextLabel33.TextSize = 14
+TextLabel33.TextWrap = true
+TextLabel33.TextWrapped = true
+TextLabel33.TextXAlignment = Enum.TextXAlignment.Left
+TextButton34.Name = "Add Suggestions"
+TextButton34.Parent = Frame27
+TextButton34.Position = UDim2.new(0, 151, 0, 77)
+TextButton34.Size = UDim2.new(0, 150, 0, 23)
+TextButton34.BackgroundColor = BrickColor.new("Black")
+TextButton34.BackgroundColor3 = Color3.new(0.156863, 0.156863, 0.156863)
+TextButton34.BorderColor = BrickColor.new("Really black")
+TextButton34.BorderColor3 = Color3.new(0, 0, 0)
+TextButton34.BorderSizePixel = 0
+TextButton34.Font = Enum.Font.Nunito
+TextButton34.FontSize = Enum.FontSize.Size14
+TextButton34.Text = "Add Suggestions"
+TextButton34.TextColor = BrickColor.new("Really black")
+TextButton34.TextColor3 = Color3.new(0, 0, 0)
+TextButton34.TextScaled = true
+TextButton34.TextSize = 14
+TextButton34.TextWrap = true
+TextButton34.TextWrapped = true
+LocalScript35.Parent = TextButton34
+table.insert(cors,sandbox(LocalScript35,function()
+script.Parent.MouseButton1Down:Connect(function()
+	script.Parent.Parent.TextBox.Text = script.Parent.Parent.TextBox.Text.." "..script.Parent.Parent.Parent.suggest.Value
+end)
+end))
+StringValue36.Name = "exclude"
+StringValue36.Parent = ScreenGui0
+BoolValue37.Name = "refunc"
+BoolValue37.Parent = ScreenGui0
+StringValue38.Name = "suggest"
+StringValue38.Parent = ScreenGui0
 for i,v in pairs(mas:GetChildren()) do
 	v.Parent = game:GetService("Players").LocalPlayer.PlayerGui
 end
