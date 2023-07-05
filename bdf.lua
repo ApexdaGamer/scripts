@@ -48,6 +48,7 @@ TextButton30 = Instance.new("TextButton")
 LocalScript31 = Instance.new("LocalScript")
 TextLabel32 = Instance.new("TextLabel")
 StringValue33 = Instance.new("StringValue")
+BoolValue34 = Instance.new("BoolValue")
 ScreenGui0.Name = "zza"
 ScreenGui0.Parent = mas
 ScreenGui0.ResetOnSpawn = false
@@ -86,6 +87,8 @@ script.Parent.Parent.ready:Destroy()
 
 script.Parent.Parent.ResetOnSpawn = false
 
+local isFunc = script.Parent.Parent.refunc
+
 local txt = script.Parent.Status
 
 txt.Text = [[Initialized!
@@ -112,26 +115,56 @@ Finding a backdoor..
 
 wait(0.1)
 
-for i,remote in pairs(remotes) do
-	if not string.match(script.Parent.Parent.exclude.Value, remote.Name) then
-		remote:FireServer("local i = Instance.new('BoolValue') i.Name = 'i' i.Value = true i.Parent = game.ReplicatedStorage")
-		wait(0.25)
-		if game.ReplicatedStorage:FindFirstChild("i") then
-			script.Parent.Parent.re.Value = remote
-			txt.Text = [[Initialized!
+if isFunc == false then
+	for i,remote in pairs(remotes) do
+		if not string.match(script.Parent.Parent.exclude.Value, remote.Name) then
+			remote:FireServer("local i = Instance.new('BoolValue') i.Name = 'i' i.Value = true i.Parent = game.ReplicatedStorage")
+			wait(0.115)
+			if game.ReplicatedStorage:FindFirstChild("i") then
+				script.Parent.Parent.re.Value = remote
+				txt.Text = [[Initialized!
 Found all RemoteEvents!
-Found a backdoor!
+Found a backdoor [String RE]!
 Passed backdoor RE!
 Loading MainUI...]]
-			for k,v in pairs(remotes) do
-				if v ~= remote then
-					table.remove(remotes,table.find(remotes,v))
+				for k,v in pairs(remotes) do
+					if v ~= remote then
+						table.remove(remotes,table.find(remotes,v))
+					end
 				end
+				game.ReplicatedStorage:FindFirstChild("i"):Destroy()
 			end
-			game.ReplicatedStorage:FindFirstChild("i"):Destroy()
 		end
 	end
 end
+
+wait(1)
+
+if script.Parent.Parent.re.Value == nil then
+	isFunc.Value = true
+	for i,remote in pairs(remotes) do
+		if not string.match(script.Parent.Parent.exclude.Value, remote.Name) then
+			remote:FireServer(function() local i = Instance.new('BoolValue') i.Name = 'i' i.Value = true i.Parent = game.ReplicatedStorage end)
+			wait(0.115)
+			if game.ReplicatedStorage:FindFirstChild("i") then
+				script.Parent.Parent.re.Value = remote
+				txt.Text = [[Initialized!
+Found all RemoteEvents!
+Found a backdoor [Function RE]!
+Passed backdoor RE!
+Loading MainUI...]]
+				for k,v in pairs(remotes) do
+					if v ~= remote then
+						table.remove(remotes,table.find(remotes,v))
+					end
+				end
+				game.ReplicatedStorage:FindFirstChild("i"):Destroy()
+			end
+		end
+	end
+end
+
+wait(1)
 
 if script.Parent.Parent.re.Value == nil then
 	txt.Text = [[Initialized!
@@ -674,6 +707,8 @@ TextLabel32.TextWrapped = true
 TextLabel32.TextXAlignment = Enum.TextXAlignment.Left
 StringValue33.Name = "exclude"
 StringValue33.Parent = ScreenGui0
+BoolValue34.Name = "refunc"
+BoolValue34.Parent = ScreenGui0
 for i,v in pairs(mas:GetChildren()) do
 	v.Parent = game:GetService("Players").LocalPlayer.PlayerGui
 	pcall(function() v:MakeJoints() end)
