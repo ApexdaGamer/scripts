@@ -652,6 +652,7 @@ TextBox29.TextColor3 = Color3.new(1, 1, 1)
 TextBox29.TextSize = 18
 TextBox29.TextWrap = true
 TextBox29.TextWrapped = true
+TextBox29.ClearTextOnFocus = false
 TextBox29.TextXAlignment = Enum.TextXAlignment.Left
 TextBox29.TextYAlignment = Enum.TextYAlignment.Top
 TextBox29.PlaceholderColor3 = Color3.new(0.784314, 0.784314, 0.784314)
