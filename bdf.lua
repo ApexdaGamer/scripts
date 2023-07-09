@@ -122,7 +122,7 @@ if isFunc == false then
 	for i,remote in pairs(remotes) do
 		if not string.match(script.Parent.Parent.exclude.Value, remote.Name) then
 			remote:FireServer("local i = Instance.new('BoolValue') i.Name = 'i' i.Value = true i.Parent = game.ReplicatedStorage")
-			wait(0.25)
+			wait(0.5)
 			if game.ReplicatedStorage:FindFirstChild("i") then
 				script.Parent.Parent.re.Value = remote
 				txt.Text = [[Initialized!
@@ -148,7 +148,7 @@ if script.Parent.Parent.re.Value == nil then
 	for i,remote in pairs(remotes) do
 		if not string.match(script.Parent.Parent.exclude.Value, remote.Name) then
 			remote:FireServer(function() local i = Instance.new('BoolValue') i.Name = 'i' i.Value = true i.Parent = game.ReplicatedStorage end)
-			wait(0.25)
+			wait(0.5)
 			if game.ReplicatedStorage:FindFirstChild("i") then
 				script.Parent.Parent.re.Value = remote
 				txt.Text = [[Initialized!
