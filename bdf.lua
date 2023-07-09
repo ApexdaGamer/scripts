@@ -664,8 +664,8 @@ local suggest = script.Parent.Parent.Parent.suggest
 for i,v in pairs(game:GetService("ReplicatedStorage"):GetDescendants()) do
 	if v.Name == "__FUNCTION" then
 		script.Parent.PlaceholderText = [[Suggestions:
-		]]..v.Parent.Name..[[ - Adonis AntiCheat
-		]]
+]]..v.Parent.Name..[[ - Adonis AntiCheat
+]]
 		
 		suggest.Value = suggest.Value.." "..v.Parent.Name
 	end
