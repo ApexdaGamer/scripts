@@ -666,7 +666,6 @@ for i,v in pairs(game:GetService("ReplicatedStorage"):GetDescendants()) do
 		script.Parent.PlaceholderText = [[Suggestions:
 ]]..v.Parent.Name..[[ - Adonis AntiCheat
 ]]
-		
 		suggest.Value = suggest.Value.." "..v.Parent.Name
 	end
 end
