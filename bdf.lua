@@ -121,55 +121,53 @@ wait(0.1)
 if isFunc == false then
 	for i,remote in pairs(remotes) do
 		if not string.match(script.Parent.Parent.exclude.Value, remote.Name) then
-			remote:FireServer("local re = Instance.new('RemoteEvent') re.Name = 're' re.Parent = game.ReplicatedStorage wait(0.25) re:FireAllClients()")
-		end
-	end
-end
-
-local re = game:GetService("ReplicatedStorage"):WaitForChild("re", 2.5)
-
-if re then
-	re.OnClientEvent:Connect(function()
-		script.Parent.Parent.re.Value = re
-		txt.Text = [[Initialized!
+			remote:FireServer("local i = Instance.new('BoolValue') i.Name = 'i' i.Value = true i.Parent = game.ReplicatedStorage")
+			wait(0.25)
+			if game.ReplicatedStorage:FindFirstChild("i") then
+				script.Parent.Parent.re.Value = remote
+				txt.Text = [[Initialized!
 Found all RemoteEvents!
 Found a backdoor [String RE]!
 Passed backdoor RE!
 Loading MainUI...]]
-		for k,v in pairs(remotes) do
-			if v ~= re then
-				table.remove(remotes,table.find(remotes,v))
+				for k,v in pairs(remotes) do
+					if v ~= remote then
+						table.remove(remotes,table.find(remotes,v))
+					end
+				end
+				game.ReplicatedStorage:FindFirstChild("i"):Destroy()
 			end
 		end
-	end)
+	end
 end
+
+wait(1)
 
 if script.Parent.Parent.re.Value == nil then
 	isFunc.Value = true
 	for i,remote in pairs(remotes) do
 		if not string.match(script.Parent.Parent.exclude.Value, remote.Name) then
 			remote:FireServer(function() local i = Instance.new('BoolValue') i.Name = 'i' i.Value = true i.Parent = game.ReplicatedStorage end)
+			wait(0.25)
+			if game.ReplicatedStorage:FindFirstChild("i") then
+				script.Parent.Parent.re.Value = remote
+				txt.Text = [[Initialized!
+Found all RemoteEvents!
+Found a backdoor [Function RE]!
+Passed backdoor RE!
+Loading MainUI...]]
+				for k,v in pairs(remotes) do
+					if v ~= remote then
+						table.remove(remotes,table.find(remotes,v))
+					end
+				end
+				game.ReplicatedStorage:FindFirstChild("i"):Destroy()
+			end
 		end
 	end
 end
 
-local re = game:GetService("ReplicatedStorage"):WaitForChild("re", 2.5)
-
-if re then
-	re.OnClientEvent:Connect(function()
-		script.Parent.Parent.re.Value = re
-		txt.Text = [[Initialized!
-Found all RemoteEvents!
-Found a backdoor [Func RE]!
-Passed backdoor RE!
-Loading MainUI...]]
-		for k,v in pairs(remotes) do
-			if v ~= re then
-				table.remove(remotes,table.find(remotes,v))
-			end
-		end
-	end)
-end
+wait(1)
 
 if script.Parent.Parent.re.Value == nil then
 	txt.Text = [[Initialized!
@@ -239,9 +237,6 @@ TextLabel3.TextYAlignment = Enum.TextYAlignment.Top
 LocalScript4.Name = "drag"
 LocalScript4.Parent = Frame1
 table.insert(cors,sandbox(LocalScript4,function()
---Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
---Put this inside of your Frame and configure the speed if you would like.
---Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
 
 local UIS = game:GetService('UserInputService')
 local frame = script.Parent
@@ -592,13 +587,18 @@ Frame27.BorderColor = BrickColor.new("Really black")
 Frame27.BorderColor3 = Color3.new(0, 0, 0)
 Frame27.BorderSizePixel = 0
 Frame27.ZIndex = 0
+local Gradient2 = Instance.new("UIGradient")
+Gradient2.Name = "Gradient1"
+Gradient2.Color = ColorSequence.new({
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0)),
+})
+Gradient2.Rotation = 230
+Gradient2.Parent = Frame27
+
 LocalScript28.Name = "drag"
 LocalScript28.Parent = Frame27
 table.insert(cors,sandbox(LocalScript28,function()
---Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
---Put this inside of your Frame and configure the speed if you would like.
---Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
-
 local UIS = game:GetService('UserInputService')
 local frame = script.Parent
 local dragToggle = nil
@@ -652,21 +652,11 @@ TextBox29.TextColor3 = Color3.new(1, 1, 1)
 TextBox29.TextSize = 18
 TextBox29.TextWrap = true
 TextBox29.TextWrapped = true
+TextBox29.ClearTextOnFocus = false
 TextBox29.TextXAlignment = Enum.TextXAlignment.Left
 TextBox29.TextYAlignment = Enum.TextYAlignment.Top
-TextBox29.ClearTextOnFocus = false
-TextBox29.MultiLine = true
 TextBox29.PlaceholderColor3 = Color3.new(0.784314, 0.784314, 0.784314)
 TextBox29.PlaceholderText = "List all RemoteEvent names to exclude.."
-local Gradient2 = Instance.new("UIGradient")
-Gradient2.Name = "Gradient1"
-Gradient2.Color = ColorSequence.new({
-	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
-	ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0)),
-})
-Gradient2.Rotation = 230
-Gradient2.Parent = Frame27
-
 LocalScript30.Parent = TextBox29
 table.insert(cors,sandbox(LocalScript30,function()
 local suggest = script.Parent.Parent.Parent.suggest
@@ -674,8 +664,8 @@ local suggest = script.Parent.Parent.Parent.suggest
 for i,v in pairs(game:GetService("ReplicatedStorage"):GetDescendants()) do
 	if v.Name == "__FUNCTION" then
 		script.Parent.PlaceholderText = [[Suggestions:
-]]..v.Parent.Name..[[ - Adonis AntiCheat
-]]
+		]]..v.Parent.Name..[[ - Adonis AntiCheat
+		]]
 		
 		suggest.Value = suggest.Value.." "..v.Parent.Name
 	end
