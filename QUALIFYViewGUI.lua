@@ -100,7 +100,7 @@ TextButton4.TextSize = 14
 LocalScript5.Parent = TextButton4
 table.insert(cors,sandbox(LocalScript5,function()
 script.Parent.MouseButton1Down:Connect(function()
-	local plrn = script.Parent.Parent.TextLabel.Text
+	local plrn = script.Parent.Parent.TextBox.Text
 	while wait() do
 		if game.UserInputService:IsKeyDown(Enum.KeyCode.R) then
 			break
