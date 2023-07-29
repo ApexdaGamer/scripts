@@ -105,7 +105,7 @@ script.Parent.MouseButton1Down:Connect(function()
 		if game.UserInputService:IsKeyDown(Enum.KeyCode.R) then
 			break
 		end
-		if game.Players[plrn].Character then
+		if game.Players:FindFirstChild(plrn) then
 			workspace.CurrentCamera.CameraSubject = game.Players[plrn].Character.Head
 		else
 			break
