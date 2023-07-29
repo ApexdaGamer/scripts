@@ -156,6 +156,7 @@ TextBox6.BorderColor3 = Color3.new(0, 0, 0)
 TextBox6.BorderSizePixel = 0
 TextBox6.Font = Enum.Font.SourceSans
 TextBox6.FontSize = Enum.FontSize.Size14
+TextBox6.ClearTextOnFocus = false
 TextBox6.Text = ""
 TextBox6.TextColor = BrickColor.new("Really black")
 TextBox6.TextColor3 = Color3.new(0, 0, 0)
