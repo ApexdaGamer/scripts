@@ -140,12 +140,14 @@ table.insert(cors,sandbox(LocalScript3,function()
 			--smqfl you idiot you need more  vis          !
 		elseif rand == 6 then
 			changetext("Dot Color Randomized")
-			while wait() do
-				if ct.Text ~= "Dot Color Randomized" then
-					break
+			spawn(function()
+				while wait() do
+					if ct.Text ~= "Dot Color Randomized" then
+						break
+					end
+					workspace.vis.dot.Color = Color3.fromRGB(math.random(75,255),math.random(75,255),math.random(75,255))
 				end
-				workspace.vis.dot.Color = Color3.fromRGB(math.random(75,255),math.random(75,255),math.random(75,255))
-			end
+			end)
 		end
 		wait(3)
 		changetext("10")
