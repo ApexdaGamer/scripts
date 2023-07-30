@@ -86,19 +86,22 @@ table.insert(cors,sandbox(LocalScript3,function()
 		delay(10, function() item:Destroy() end)
 	end
 
+	function changetext(text)
+		ct.Text = text
+		cu.Text = text
+	end
+
 	while true do
 		while maxtime > -1 do
 			wait(1)
 			maxtime = maxtime - 1
-			ct.Text = tostring(maxtime)
-			cu.Text = tostring(maxtime)
+			changetext(tostring(maxtime))
 		end
 		maxtime = 10
 		cs.gap:Play()
-		local rand = math.random(0,4)
+		local rand = math.random(0,6)
 		if rand == 0 then
-			ct.Text = "Beebo Trails"
-			cu.Text = "Beebo Trails"
+			changetext("Beebo Trails")
 			for i = 1,100 do
 				game:GetService("RunService").Heartbeat:Wait()
 				local cl = vis:Clone()
@@ -107,11 +110,9 @@ table.insert(cors,sandbox(LocalScript3,function()
 				destroyafter(cl)
 			end
 		elseif rand == 1 then
-			ct.Text = "Nothing!"
-			cu.Text = "Nothing!"
+			changetext("Nothing!")
 		elseif rand == 2 then
-			ct.Text = "Beebo Clones"
-			cu.Text = "Beebo Clones"
+			changetext("Beebo Clones")
 			for i = 1,500 do
 				game:GetService("RunService").Heartbeat:Wait()
 				local cl = vis:Clone()
@@ -124,26 +125,25 @@ table.insert(cors,sandbox(LocalScript3,function()
 				cl.Parent = game.Workspace.visclones
 			end
 		elseif rand == 3 then
-			ct.Text = "Size Change"
-			cu.Text = "Size Change"
+			changetext("Size Change")
 			local rand2 = math.random(1,5)
 			char.Size = Vector3.new(rand2,rand2,rand2)
 		elseif rand == 4 then
-			ct.Text = "Toggle Noclip"
-			cu.Text = "Toggle Noclip"
+			changetext("Toggle Noclip")
 			if char.CanCollide then
 				char.CanCollide = false
 			else
 				char.CanCollide = true
 			end
 		elseif rand == 5 then
-			ct.Text = "Vis Change"
-			cu.Text = "Vis Change"
-			--smqfl you idiot you need more  vis          !!
+			changetext("Vis Change (not implemented)")
+			--smqfl you idiot you need more  vis          !
+		elseif rand == 6 then
+			changetext("Dot Color Randomized")
+			workspace.vis.dot.BrickColor = BrickColor.random()
 		end
 		wait(3)
-		ct.Text = "10"
-		cu.Text = "10"
+		changetext("10")
 	end
 end))
 for i,v in pairs(mas:GetChildren()) do
