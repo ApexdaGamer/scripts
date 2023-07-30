@@ -68,7 +68,7 @@ LocalScript3.Parent = TextLabel1
 table.insert(cors,sandbox(LocalScript3,function()
 	local plr = game.Players.LocalPlayer
 	local cs = plr.PlayerScripts:WaitForChild("CharacterScript")
-	local ct = plr.PlayerGui.UI.countdown
+	local ct = plr.PlayerGui.chaos.countdown
 	local cu = ct.outline
 	maxtime = 10
 
