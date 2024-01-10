@@ -9,7 +9,7 @@ local instance = game.ReplicatedFirst -- The instance to save descendants from
 
 -- Don't touch this code!!!!!!!!!!!!!!!!!!
 
-local xml = [[<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+local xml = [[<roblox version="4">
 ]]
 local curdata = [[]]
 local parts = {}
@@ -74,11 +74,9 @@ for i,v in pairs(instance:GetDescendants()) do
 end
 print("Done looping through children")
 xml ..= [[<Item class="Workspace" referent="mainworkspace">
-<Properties>
-</Properties>
+<Properties></Properties>
 <Item class="Folder" referent="mainfolder">
-<Properties>
-</Properties>
+<Properties></Properties>
 ]]
 print("Looping through subitems to add to main folder.")
 for i,v in pairs(subitems) do
