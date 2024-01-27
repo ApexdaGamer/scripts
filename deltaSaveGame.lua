@@ -4,6 +4,8 @@
 
 -- Options
 local instance = game.ReplicatedFirst -- The instance to save descendants from
+-- you can set it to just "game" to make it decompile the entire game (and it will not put contents in workspace)
+
 -- more to be added later
 -- End Options
 
@@ -13,7 +15,6 @@ local xml = [[<roblox version="4">
 ]]
 local curdata = [[]]
 local parts = {}
-local subitems = {}
 local data
 data = game:HttpGet("https://setup.rbxcdn.com/versionQTStudio", true)
 data = game:HttpGet("http://setup.rbxcdn.com/"..data.."-API-Dump.json", true)
@@ -45,8 +46,7 @@ function propertyLookup(itype)
 	return properties
 end
 local cfrcomp = {"X","Y","Z","R00","R01","R02","R10","R11","R12","R20","R21","R22"}
-print("Initialized variables, starting child loop.")
-for i,v in pairs(instance:GetDescendants()) do
+function instanceIterator(v)
 	curdata ..= "<Item class=\"" .. v.ClassName .. "\" referent=\"" .. (#parts+1) .. "\">\n"
 	curdata ..= "<Properties>\n"
 	table.insert(parts, v)
@@ -67,31 +67,35 @@ for i,v in pairs(instance:GetDescendants()) do
 				end
 				curdata ..= "</"..(k["ValueType"]["Name"] == "BrickColor" and "int" or (k["ValueType"]["Name"] == "Enum" and "token" or (k["ValueType"]["Name"] == "CFrame" and "CoordinateFrame" or k["ValueType"]["Name"])))..">\n"
 			end
-			table.insert(subitems,curdata)
 		end)
-		curdata = ""
 	end
+	curdata ..= "<Properties>\n"
+	for j,k in pairs(v:GetChildren()) do
+		instanceIterator(k)
+	end
+	curdata ..= "</Item>\n"
 end
-print("Done looping through children")
-xml ..= [[<Item class="Workspace" referent="mainworkspace">
+if instance ~= game then
+	xml ..= [[<Item class="Workspace" referent="mainworkspace">
 <Properties></Properties>
 <Item class="Folder" referent="mainfolder">
 <Properties></Properties>
 ]]
-print("Looping through subitems to add to main folder.")
-for i,v in pairs(subitems) do
-	xml ..= v
-	xml ..= "</Properties>\n"
-	xml ..= "</Item>\n"
 end
+local start = tick()
+print("Initialized variables, starting main loop")
+local loopstart = tick()
+instanceIterator(instance)
+print("Main loop finished in",tick()-loopstart,"seconds")
+xml ..= curdata
 xml ..= [[</Properties>
 </Item>
 </Item>
 </Item>
 </roblox>]]
 print("Done!")
-print("(temp action) Printing output XML...")
+print("(temp action) Printing output XML")
 print(xml)
-print("Copying to Clipboard...")
+print("Copying to clipboard")
 setclipboard(xml)
-print("Done!")
+print("Done! Took",tick()-start,"seconds.")
