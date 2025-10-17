@@ -4665,7 +4665,7 @@ ws.OnMessage:Connect(function(msg)
 				local newplam = script.plam:Clone()
 				newplam.Parent, newplam.Name = cplam, mppn
 			end
-			for j,k in pairs(v["mpdata"]) do
+			for j,k in pairs(v["dat"]) do
 				if typeof(k) ~= "table" then
 					cplam[mppn][j].Value = k
 				elseif k:getn() == 12 then
