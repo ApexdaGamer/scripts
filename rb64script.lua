@@ -4666,7 +4666,7 @@ ws.OnMessage:Connect(function(msg)
 		for j,k in pairs(dat["dat"]) do
 			if typeof(k) ~= "table" then
 				cplam[plrn][j].Value = k
-			elseif k:getn() == 12 then
+			elseif #k == 12 then
 				cplam[plrn][j].Value = CFrame.new(table.unpack(k))
 			else
 				cplam[plrn][j].Value = Vector3.new(table.unpack(k))
