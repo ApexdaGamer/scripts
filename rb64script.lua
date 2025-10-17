@@ -1976,7 +1976,6 @@ playing = true
 uis = game:GetService("UserInputService")
 game.StarterGui:SetCoreGuiEnabled("Backpack", false)
 game.StarterGui:SetCoreGuiEnabled("Health", false)
-uis.MouseIconEnabled = false
 local last=1
 local didjump = false
 
@@ -4171,7 +4170,7 @@ end
 if #spawns == 0 then
 	char.Position = Vector3.new(0,100,0)
 else
-	char.CFrame = spawns[math.random(1,#spawns)].CFrame
+	char.CFrame = spawns[math.random(1,#spawns)].CFrame * CFrame.new(0,5,0)
 end
 
 rg3 = {}
@@ -4661,7 +4660,7 @@ ws.OnMessage:Connect(function(msg)
 		warn("GameData ignored FOR NOW!!!")
 	elseif dat["msg"] == "mpd" then
 		for i,v in pairs(dat["dat"]) do
-			local mppn = v["un"]
+			local mppn = i
 			if not cplam:FindFirstChild(mppn) then
 				local newplam = script.plam:Clone()
 				newplam.Parent, newplam.Name = cplam, mppn
