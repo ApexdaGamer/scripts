@@ -4547,6 +4547,9 @@ char.Anchored = false
 frame = 0
 phit = nil
 
+local cplam = Instance.new("Folder", workspace)
+cplam.Name = "cplam"
+
 local chr = game.Players.LocalPlayer.Character
 chr.HumanoidRootPart.Anchored = true
 
@@ -4593,6 +4596,22 @@ if chr:FindFirstChild("Humanoid") then
 		chr["Torso"].CFrame = vis.torso.CFrame * CFrame.new(0,0.5,0)
 		chr["Left Leg"].CFrame = vis.legB.CFrame * CFrame.new(0,0,0.15)
 		chr["Right Leg"].CFrame = vis.legA.CFrame * CFrame.new(0,0,0.15)
+		for i,v in pairs(workspace.fakes:GetChildren()) do
+			if cplam:FindFirstChild(v.Name) and game.Players:FindFirstChild(v.Name) then
+				local pchr = game.Players:FindFirstChild(v.Name).Character
+				if pchr then
+					for j,k in pairs(pchr:GetDescendants()) do
+						if k:IsA("BasePart") then k.Anchored = true end
+					end
+					pchr["Head"].CFrame = v.head.CFrame * CFrame.new(0,0.45,0)
+					pchr["Left Arm"].CFrame = v.armD.CFrame * CFrame.new(-0.325,0.65,0)
+					pchr["Right Arm"].CFrame = v.armC.CFrame * CFrame.new(0.325,0.65,0)
+					pchr["Torso"].CFrame = v.torso.CFrame * CFrame.new(0,0.5,0)
+					pchr["Left Leg"].CFrame = v.legB.CFrame * CFrame.new(0,0,0.15)
+					pchr["Right Leg"].CFrame = v.legA.CFrame * CFrame.new(0,0,0.15)
+				end
+			end
+		end
 		--[[lseif chr:FindFirstChild("UpperTorso") then
 			if v.Name == "Head" then
 				v.CFrame = vis.head.CFrame * CFrame.new(0,0.45,0)
@@ -4631,8 +4650,6 @@ task.wait()
 
 -- MULTIPLAYER
 
-local cplam = Instance.new("Folder", workspace)
-cplam.Name = "cplam"
 local http = game:GetService("HttpService")
 local ws = WebSocket.connect("wss://rbxws.zuzar.site")
 
@@ -5252,9 +5269,9 @@ while playing do
 			,head=ag(vis.head.CFrame),torso=vis.torso.CFrame,legA=ag(vis.legA.CFrame),legB=ag(vis.legB.CFrame)
 			,armA=ag(vis.armA.CFrame),armB=ag(vis.armB.CFrame),armC=ag(vis.armC.CFrame),armD=ag(vis.armD.CFrame)}
 		for i,v in pairs(lt)do
-			--if plam:FindFirstChild(i)then
-			--	plam[i].Value = v
-			--end
+			if plam:FindFirstChild(i)then
+				plam[i].Value = v
+			end
 		end
 		anim(vis, plam, ((zoom*10-pzom>2) and 0 or 1)  )
 		local lt = (vis.head.CFrame-vis.head.Position):Lerp(lookat, lookerp)
