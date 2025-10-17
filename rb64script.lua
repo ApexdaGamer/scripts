@@ -4659,22 +4659,19 @@ ws.OnMessage:Connect(function(msg)
 	if dat["msg"] == "gd" then
 		warn("GameData ignored FOR NOW!!!")
 	elseif dat["msg"] == "mpd" then
-		for i,v in pairs(dat["dat"]) do
-			local mppn = i
-			if not cplam:FindFirstChild(mppn) then
-				local newplam = script.plam:Clone()
-				newplam.Parent, newplam.Name = cplam, mppn
+		if not cplam:FindFirstChild(plrn) then
+			local newplam = script.plam:Clone()
+			newplam.Parent, newplam.Name = cplam, plrn
+		end
+		for j,k in pairs(dat["dat"]) do
+			if typeof(k) ~= "table" then
+				cplam[plrn][j].Value = k
+			elseif k:getn() == 12 then
+				cplam[plrn][j].Value = CFrame.new(table.unpack(k))
+			else
+				cplam[plrn][j].Value = Vector3.new(table.unpack(k))
 			end
-			for j,k in pairs(v["dat"]) do
-				if typeof(k) ~= "table" then
-					cplam[mppn][j].Value = k
-				elseif k:getn() == 12 then
-					cplam[mppn][j].Value = CFrame.new(table.unpack(k))
-				else
-					cplam[mppn][j].Value = Vector3.new(table.unpack(k))
-				end
-				print(j..":", k, "=====", mppn)
-			end
+			print(j..":", k, "=====", plrn)
 		end
 	elseif dat["msg"] == "plrdisconn" then
 		if workspace.fakes:FindFirstChild(plrn) then
