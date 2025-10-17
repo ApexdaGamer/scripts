@@ -4715,6 +4715,7 @@ task.spawn(function()
 
 		sd["msg"] = "mpdata"
 		sd["uid"] = lp.UserId
+		sd["un"] = lp.Name
 		sd["gid"] = game.PlaceId
 		sd["dat"] = np
 		ws:Send(http:JSONEncode(sd))
