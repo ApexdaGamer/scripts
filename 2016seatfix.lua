@@ -56,4 +56,30 @@ for _,Part in next, v:GetChildren() do
                     Seat.Weld.Part0 = Part
                     Seat.Weld.Part1 = v.HumanoidRootPart
                     Seat.Weld.C0 = CFrame.new(0,Part.Size.Y+1.2,0)
-                    v.Humanoid["Sit"] =
+                    v.Humanoid["Sit"] = true
+                    delay(.25,function()
+                        pcall(function()
+                            local SeatWeld = Seat.Seat:FindFirstChild("SeatWeld")
+                            if SeatWeld then SeatWeld:Destroy() end
+                        end)
+                    end)
+
+                end
+            end)
+        end
+    end
+
+    Events.Destroyed = v.Changed:Connect(function(Property)
+        if Property == "Parent" and v.Parent == nil then
+            for i, Event in next, Events do
+                Event:disconnect()
+            end
+        end
+    end)
+end
+
+if Player.Character then
+    Setup(Player.Character)
+end
+
+Player.CharacterAdded:connect(Setup)
